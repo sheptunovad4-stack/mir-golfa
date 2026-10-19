@@ -1,0 +1,145 @@
+[
+  {
+    "id": "ru_golf_calendar",
+    "name": "Ассоциация гольфа России — календарь",
+    "country": "Россия",
+    "region": "Федеральный",
+    "kind": "html",
+    "url": "https://rusgolf.ru/ru/contests/tournament-calendar",
+    "trust": 5,
+    "enabled": true,
+    "notes": "Официальный календарь; извлечение требует адаптера под фактическую структуру страницы."
+  },
+  {
+    "id": "ru_golf_docs",
+    "name": "Ассоциация гольфа России — соревнования и документы",
+    "country": "Россия",
+    "region": "Федеральный",
+    "kind": "html",
+    "url": "https://rusgolf.ru/ru/contests/sorevnovaniya-2026",
+    "trust": 5,
+    "enabled": true,
+    "notes": "Проверять положения, регламенты и официальные документы."
+  },
+  {
+    "id": "by_golf_calendar",
+    "name": "Белорусская ассоциация гольфа — календарь",
+    "country": "Беларусь",
+    "region": "Национальный",
+    "kind": "html",
+    "url": "https://ingolf.by/turniryi/kalendarnyij-plan-na-2026",
+    "trust": 5,
+    "enabled": true,
+    "notes": "Официальный календарный план."
+  },
+  {
+    "id": "kz_golf_federation",
+    "name": "Казахстанская федерация гольфа",
+    "country": "Казахстан",
+    "region": "Национальный",
+    "kind": "html",
+    "url": "https://fedgolf.kz/ru",
+    "trust": 4,
+    "enabled": true,
+    "notes": "Найти актуальные турниры и ссылки на первичные объявления."
+  },
+  {
+    "id": "uz_golf_events",
+    "name": "UZGolf — турниры",
+    "country": "Узбекистан",
+    "region": "Национальный",
+    "kind": "html",
+    "url": "https://uzgolf.uz/en/events-en/",
+    "trust": 3,
+    "enabled": true,
+    "notes": "Архивные события не считать актуальными без проверки даты."
+  },
+  {
+    "id": "wagr",
+    "name": "World Amateur Golf Ranking",
+    "country": "Международный",
+    "region": "Международный",
+    "kind": "html",
+    "url": "https://www.wagr.com/",
+    "trust": 4,
+    "enabled": true,
+    "notes": "Рейтинг игроков; не источник окончательных результатов турнира."
+  },
+  {
+    "id": "moscow_golf",
+    "name": "Московский гольф — поиск официальных публикаций",
+    "country": "Россия",
+    "region": "Москва",
+    "kind": "html",
+    "url": "https://rusgolf.ru/ru/contests/tournament-calendar",
+    "trust": 4,
+    "enabled": true,
+    "notes": "Региональный фильтр по Москве; выделить отдельный источник федерации после подтверждения актуального URL."
+  },
+  {
+    "id": "spb_golf",
+    "name": "Гольф Санкт-Петербурга — календарь АГР",
+    "country": "Россия",
+    "region": "Санкт-Петербург",
+    "kind": "html",
+    "url": "https://rusgolf.ru/ru/contests/tournament-calendar",
+    "trust": 4,
+    "enabled": true,
+    "notes": "Региональный фильтр по Санкт-Петербургу; URL региональной федерации требует верификации."
+  },
+  {
+    "id": "mos_oblast_golf",
+    "name": "Гольф Московской области — календарь АГР",
+    "country": "Россия",
+    "region": "Московская область",
+    "kind": "html",
+    "url": "https://rusgolf.ru/ru/contests/tournament-calendar",
+    "trust": 4,
+    "enabled": true,
+    "notes": "Региональный фильтр; уточнить официальный региональный источник."
+  },
+  {
+    "id": "krasnodar_golf",
+    "name": "Гольф Краснодарского края — календарь АГР",
+    "country": "Россия",
+    "region": "Краснодарский край",
+    "kind": "html",
+    "url": "https://rusgolf.ru/ru/contests/tournament-calendar",
+    "trust": 4,
+    "enabled": true,
+    "notes": "Включая соревнования в Геленджике; проверять у организатора."
+  },
+  {
+    "id": "krasnoyarsk_golf",
+    "name": "Гольф Красноярского края — поиск официальных публикаций",
+    "country": "Россия",
+    "region": "Красноярский край",
+    "kind": "html",
+    "url": "https://rusgolf.ru/ru/contests/tournament-calendar",
+    "trust": 3,
+    "enabled": true,
+    "notes": "URL отдельной региональной федерации пока не подтверждён; используется календарь АГР."
+  },
+  {
+    "id": "astana_golf",
+    "name": "Гольф Астаны — Казахстанская федерация",
+    "country": "Казахстан",
+    "region": "Астана",
+    "kind": "html",
+    "url": "https://fedgolf.kz/ru",
+    "trust": 4,
+    "enabled": true,
+    "notes": "Региональный поиск турниров; конкретный клубный календарь нужно подтвердить."
+  },
+  {
+    "id": "livescoring",
+    "name": "Livescoring.ru — результаты",
+    "country": "Россия",
+    "region": "Все регионы",
+    "kind": "html",
+    "url": "https://livescoring.ru/",
+    "trust": 3,
+    "enabled": true,
+    "notes": "Вспомогательный источник результатов; сверять с официальным протоколом."
+  }
+]
