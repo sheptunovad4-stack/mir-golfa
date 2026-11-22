@@ -322,6 +322,7 @@
 
   function checkState(code) {
     var c = String(code);
+    if (c === 'FILE') return 'file';
     if (/^2/.test(c)) return 'ok';
     if (/^3/.test(c)) return 'redirect';
     if (/^4/.test(c)) return 'client';
@@ -329,7 +330,7 @@
     return 'none';
   }
 
-  var STATE_LABEL = { ok: 'доступен', redirect: 'редирект', client: 'ошибка 4xx', server: 'ошибка 5xx', none: 'нет ответа' };
+  var STATE_LABEL = { ok: 'доступен', redirect: 'редирект', client: 'ошибка 4xx', server: 'ошибка 5xx', none: 'нет ответа', file: 'документ' };
 
   function badgeClass(code) {
     var s = checkState(code);
@@ -337,6 +338,12 @@
     if (s === 'redirect') return 'warn';
     if (s === 'client' || s === 'server') return 'err';
     return 'ghost';
+  }
+
+  function codeLabel(code) {
+    if (String(code) === 'FILE') return 'документ';
+    if (String(code) === '000') return 'нет ответа';
+    return 'HTTP ' + code;
   }
 
   /* ══════════════════════════════════════════════════════════
@@ -614,7 +621,7 @@
     var chk = checkFor(s.url);
     var extra = '';
     if (chk) {
-      extra = '<span class="pill ' + badgeClass(chk.code) + '" style="font-size:10px;padding:4px 8px">' + (chk.code === '000' ? 'нет ответа' : 'HTTP ' + chk.code) + '</span>';
+      extra = '<span class="pill ' + badgeClass(chk.code) + '" style="font-size:10px;padding:4px 8px">' + codeLabel(chk.code) + '</span>';
     }
     return '<a class="card src" href="' + esc(s.url) + '" target="_blank" rel="noopener">' +
       '<div class="row between"><span class="idx">ИСТОЧНИК ' + String(s.n).padStart(3, '0') + '</span>' + extra + '</div>' +
@@ -656,6 +663,7 @@
     var redirect = CHECKS.filter(function (c) { return checkState(c.code) === 'redirect'; }).length;
     var err = CHECKS.filter(function (c) { var s = checkState(c.code); return s === 'client' || s === 'server'; }).length;
     var none = CHECKS.filter(function (c) { return checkState(c.code) === 'none'; }).length;
+    var files = CHECKS.filter(function (c) { return checkState(c.code) === 'file'; }).length;
 
     var html = '<h2 style="margin:2px 0 8px;font-size:24px;font-weight:900">Архив</h2>' +
       '<p class="muted small" style="margin:0 0 14px">Исключённые домены и результат обхода сайтов из реестра: код ответа, заголовок и адрес после редиректов.</p>';
@@ -666,6 +674,7 @@
       '<div class="stat" style="background:#fff;border:1px solid var(--line)"><b style="color:var(--red)">' + err + '</b><span style="color:var(--muted)">ошибки</span></div>' +
       '<div class="stat" style="background:#fff;border:1px solid var(--line)"><b style="color:var(--muted)">' + none + '</b><span style="color:var(--muted)">нет ответа</span></div>' +
     '</div>';
+    if (files) html += '<p class="small muted" style="margin:-8px 0 14px">' + files + ' ' + plural(files, 'адрес', 'адреса', 'адресов') + ' — документ (PDF/DOCX), а не страница.</p>';
 
     // исключённые
     html += '<div class="section-title">Исключённые источники · ' + ARCHIVE.length + '</div>';
@@ -700,7 +709,7 @@
       rows.slice(0, state.shownChecks).forEach(function (c) {
         html += '<a class="card check" href="' + esc(c.url) + '" target="_blank" rel="noopener">' +
           '<div class="row between">' +
-            '<span class="pill ' + badgeClass(c.code) + '" style="font-size:10px;padding:4px 8px">' + (c.code === '000' ? 'нет ответа' : 'HTTP ' + c.code) + '</span>' +
+            '<span class="pill ' + badgeClass(c.code) + '" style="font-size:10px;padding:4px 8px">' + codeLabel(c.code) + '</span>' +
             '<span class="muted small">' + esc(host(c.url)) + '</span>' +
           '</div>' +
           '<h3>' + esc(c.title || (checkState(c.code) === 'none' ? 'Сайт не ответил' : 'Без заголовка')) + '</h3>' +
