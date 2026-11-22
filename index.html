@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#F4F5EF">
-<meta name="description" content="Мир Гольфа — турниры, результаты и источники по гольфу в России и СНГ.">
-<title>Мир Гольфа — турниры, результаты, источники</title>
+<meta name="description" content="Мир Гольфа — турниры, клубы, источники и архив по гольфу в России и СНГ.">
+<title>Мир Гольфа — турниры, клубы, источники</title>
 <style>
   :root {
     --bg: #F4F5EF;
@@ -16,6 +16,7 @@
     --lime: #D8F078;
     --line: #E0E5DC;
     --amber: #F3B94E;
+    --red: #B4472E;
     --radius: 20px;
   }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -31,209 +32,78 @@
   .wrap {
     max-width: 560px;
     margin: 0 auto;
-    padding: 0 18px calc(92px + env(safe-area-inset-bottom));
+    padding: 0 18px calc(96px + env(safe-area-inset-bottom));
   }
   a { color: inherit; }
 
-  /* ── шапка ── */
   .top {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding: 18px 0 12px;
+    padding: 18px 0 10px;
   }
-  .kicker {
-    font-size: 11px;
-    letter-spacing: 2px;
-    font-weight: 800;
-    color: var(--muted);
-  }
-  .top h1 {
-    margin: 2px 0 0;
-    font-size: 26px;
-    line-height: 1.1;
-    font-weight: 900;
-    letter-spacing: -.5px;
-  }
+  .kicker { font-size: 11px; letter-spacing: 2px; font-weight: 800; color: var(--muted); }
+  .top h1 { margin: 2px 0 0; font-size: 26px; line-height: 1.1; font-weight: 900; letter-spacing: -.5px; }
   .logo {
-    width: 48px; height: 48px;
-    flex: 0 0 48px;
-    border-radius: 16px;
-    background: var(--lime);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
+    width: 48px; height: 48px; flex: 0 0 48px;
+    border-radius: 16px; background: var(--lime);
+    display: flex; align-items: center; justify-content: center; font-size: 24px;
   }
+  .databar { font-size: 11px; color: var(--muted); padding-bottom: 12px; }
 
-  /* ── общие блоки ── */
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 16px;
-    margin-bottom: 12px;
-  }
-  .hero {
-    background: var(--green);
-    color: #fff;
-    border: 0;
-    border-radius: 24px;
-    padding: 18px;
-    margin-bottom: 16px;
-  }
-  .hero .label {
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    font-weight: 800;
-    color: var(--lime);
-  }
-  .hero h2 {
-    margin: 8px 0 0;
-    font-size: 23px;
-    line-height: 1.22;
-    font-weight: 900;
-  }
-  .hero p {
-    margin: 8px 0 0;
-    font-size: 13px;
-    line-height: 1.5;
-    color: #E1E8DF;
-  }
-  .stats {
-    display: flex;
-    gap: 8px;
-    margin-top: 14px;
-  }
-  .stat {
-    flex: 1;
-    background: rgba(255,255,255,.10);
-    border-radius: 14px;
-    padding: 10px;
-  }
-  .stat b { display: block; font-size: 21px; font-weight: 900; }
-  .stat span { font-size: 11px; color: #E1E8DF; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
+  .hero { background: var(--green); color: #fff; border: 0; border-radius: 24px; padding: 18px; margin-bottom: 16px; }
+  .hero .label { font-size: 11px; letter-spacing: 1.5px; font-weight: 800; color: var(--lime); }
+  .hero h2 { margin: 8px 0 0; font-size: 23px; line-height: 1.22; font-weight: 900; }
+  .hero p { margin: 8px 0 0; font-size: 13px; line-height: 1.5; color: #E1E8DF; }
+  .stats { display: flex; gap: 8px; margin-top: 14px; }
+  .stat { flex: 1; background: rgba(255,255,255,.10); border-radius: 14px; padding: 10px; }
+  .stat b { display: block; font-size: 20px; font-weight: 900; }
+  .stat span { font-size: 10px; color: #E1E8DF; }
 
   .muted { color: var(--muted); }
   .small { font-size: 12px; }
   .row { display: flex; align-items: center; gap: 10px; }
   .between { justify-content: space-between; }
-  .wrap-row { flex-wrap: wrap; }
 
-  .pill {
-    display: inline-block;
-    background: #E8EDE3;
-    color: var(--green);
-    font-size: 11px;
-    font-weight: 800;
-    padding: 6px 10px;
-    border-radius: 30px;
-  }
+  .pill { display: inline-block; background: #E8EDE3; color: var(--green); font-size: 11px; font-weight: 800; padding: 6px 10px; border-radius: 30px; }
   .pill.dark { background: var(--green); color: #fff; }
   .pill.warn { background: #FDF1D6; color: #8A5B00; }
-  .pill.lime { background: var(--lime); color: var(--ink); }
+  .pill.err { background: #FBE4DE; color: #8C3320; }
+  .pill.ghost { background: transparent; border: 1px solid var(--line); color: var(--muted); }
 
-  /* ── поиск и фильтры ── */
   .search {
-    width: 100%;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 15px;
-    padding: 13px 15px;
-    font: inherit;
-    font-size: 14px;
-    color: var(--ink);
-    margin-bottom: 10px;
-    outline: none;
+    width: 100%; background: var(--card); border: 1px solid var(--line);
+    border-radius: 15px; padding: 13px 15px; font: inherit; font-size: 14px;
+    color: var(--ink); margin-bottom: 10px; outline: none;
   }
   .search:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(23,77,56,.10); }
-  .chips {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    margin-bottom: 12px;
-    scrollbar-width: none;
-  }
+  .chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px; scrollbar-width: none; }
   .chips::-webkit-scrollbar { display: none; }
   .chip {
-    flex: 0 0 auto;
-    border: 0;
-    font: inherit;
-    font-size: 12px;
-    font-weight: 800;
-    padding: 8px 13px;
-    border-radius: 30px;
-    background: #E8EDE3;
-    color: var(--green);
-    cursor: pointer;
+    flex: 0 0 auto; border: 0; font: inherit; font-size: 12px; font-weight: 800;
+    padding: 8px 13px; border-radius: 30px; background: #E8EDE3; color: var(--green); cursor: pointer;
   }
   .chip[aria-pressed="true"] { background: var(--green); color: #fff; }
-  .filters {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-bottom: 14px;
-  }
+  .filters { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
   .filters select {
-    width: 100%;
-    font: inherit;
-    font-size: 13px;
-    padding: 11px 12px;
-    border-radius: 13px;
-    border: 1px solid var(--line);
-    background: var(--card);
-    color: var(--ink);
-    appearance: none;
+    width: 100%; font: inherit; font-size: 13px; padding: 11px 12px; border-radius: 13px;
+    border: 1px solid var(--line); background: var(--card); color: var(--ink); appearance: none;
     background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
     background-position: calc(100% - 18px) 18px, calc(100% - 13px) 18px;
-    background-size: 5px 5px, 5px 5px;
-    background-repeat: no-repeat;
+    background-size: 5px 5px, 5px 5px; background-repeat: no-repeat;
   }
 
-  /* ── карточка турнира ── */
-  .event {
-    display: block;
-    text-decoration: none;
-    transition: transform .08s ease, box-shadow .12s ease;
-  }
-  .event:active { transform: scale(.99); }
-  .event h3 {
-    margin: 10px 0 8px;
-    font-size: 18px;
-    line-height: 1.25;
-    font-weight: 900;
-  }
+  .event { display: block; text-decoration: none; }
+  .event h3 { margin: 10px 0 8px; font-size: 18px; line-height: 1.25; font-weight: 900; }
   .event .when { color: var(--green); font-weight: 800; font-size: 14px; margin-bottom: 4px; }
   .event .where { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
   .event .more { font-size: 12px; font-weight: 800; color: var(--green); }
-  .note-warn {
-    margin-top: 10px;
-    background: #FDF1D6;
-    color: #8A5B00;
-    border-radius: 12px;
-    padding: 9px 11px;
-    font-size: 12px;
-    line-height: 1.4;
-  }
+  .note-warn { margin-top: 10px; background: #FDF1D6; color: #8A5B00; border-radius: 12px; padding: 9px 11px; font-size: 12px; line-height: 1.4; }
 
-  /* ── детальный экран ── */
-  .back {
-    display: inline-block;
-    text-decoration: none;
-    font-weight: 800;
-    color: var(--green);
-    margin: 0 0 14px;
-    font-size: 14px;
-  }
-  .detail-hero {
-    background: var(--green);
-    color: #fff;
-    border-radius: 24px;
-    padding: 20px;
-    margin-bottom: 12px;
-  }
+  .back { display: inline-block; text-decoration: none; font-weight: 800; color: var(--green); margin: 0 0 14px; font-size: 14px; }
+  .detail-hero { background: var(--green); color: #fff; border-radius: 24px; padding: 20px; margin-bottom: 12px; }
   .detail-hero h2 { margin: 12px 0 0; font-size: 24px; line-height: 1.2; font-weight: 900; }
   .detail-hero .when, .detail-hero .where { color: #E3EBDD; font-size: 14px; margin-top: 10px; }
   .detail-hero .where { margin-top: 4px; }
@@ -241,75 +111,54 @@
   .card p { margin: 0; color: var(--muted); font-size: 14px; }
   .card p + p { margin-top: 6px; }
   .btn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    text-decoration: none;
-    border: 0;
-    font: inherit;
-    font-weight: 900;
-    font-size: 15px;
-    padding: 15px;
-    border-radius: 15px;
-    background: var(--lime);
-    color: var(--ink);
-    cursor: pointer;
-    margin-bottom: 10px;
+    display: block; width: 100%; text-align: center; text-decoration: none; border: 0;
+    font: inherit; font-weight: 900; font-size: 15px; padding: 15px; border-radius: 15px;
+    background: var(--lime); color: var(--ink); cursor: pointer; margin-bottom: 10px;
   }
-  .btn.ghost {
-    background: transparent;
-    color: var(--green);
-    border: 1px solid var(--green);
-  }
+  .btn.ghost { background: transparent; color: var(--green); border: 1px solid var(--green); }
+  .btn.more-btn { background: var(--card); border: 1px solid var(--line); color: var(--green); font-size: 14px; }
   .kv { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
   .kv:last-child { border-bottom: 0; }
   .kv span:first-child { color: var(--muted); }
   .kv span:last-child { text-align: right; font-weight: 700; }
 
-  /* ── аналитика ── */
   .bar-row { display: flex; align-items: center; gap: 10px; margin: 9px 0; font-size: 13px; }
-  .bar-row .name { flex: 0 0 96px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bar-row .name { flex: 0 0 104px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .bar-track { flex: 1; height: 9px; background: #EDF1E8; border-radius: 99px; overflow: hidden; }
   .bar-fill { height: 100%; background: var(--green); border-radius: 99px; }
-  .bar-row .val { flex: 0 0 24px; text-align: right; font-weight: 800; }
+  .bar-row .val { flex: 0 0 26px; text-align: right; font-weight: 800; }
 
-  /* ── источники ── */
   .src { display: block; text-decoration: none; }
-  .src .idx { font-size: 10px; letter-spacing: 1px; font-weight: 800; color: var(--green); }
-  .src h3 { margin: 6px 0 4px; font-size: 16px; font-weight: 900; line-height: 1.25; }
-  .src .meta { font-size: 12px; color: var(--muted); }
-  .src .st { margin-top: 9px; font-size: 12px; font-weight: 700; color: var(--green); }
-  .trust { letter-spacing: 1px; color: var(--amber); }
+  .idx { font-size: 10px; letter-spacing: 1px; font-weight: 800; color: var(--green); }
+  .src h3, .club h3 { margin: 6px 0 4px; font-size: 16px; font-weight: 900; line-height: 1.25; }
+  .src .meta, .club .meta { font-size: 12px; color: var(--muted); }
+  .src .st, .club .st { margin-top: 8px; font-size: 12px; font-weight: 700; color: var(--green); }
+  .club .links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .club .links a { font-size: 12px; font-weight: 800; text-decoration: none; color: var(--green); background: #E8EDE3; padding: 7px 11px; border-radius: 30px; }
+  .club .note, .src .note { margin: 9px 0 0; font-size: 12px; color: var(--muted); line-height: 1.4; }
 
-  /* ── таббар ── */
+  .check { display: block; text-decoration: none; }
+  .check .url { font-size: 11px; color: var(--muted); word-break: break-all; margin-top: 6px; }
+  .check h3 { margin: 6px 0 2px; font-size: 14px; font-weight: 800; line-height: 1.3; }
+
   .tabbar {
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
-    background: rgba(244,245,239,.94);
-    backdrop-filter: blur(8px);
+    position: fixed; left: 0; right: 0; bottom: 0;
+    background: rgba(244,245,239,.96); backdrop-filter: blur(8px);
     border-top: 1px solid var(--line);
-    display: flex;
-    justify-content: space-around;
-    padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
-    z-index: 10;
+    display: flex; justify-content: space-around;
+    padding: 7px 4px calc(7px + env(safe-area-inset-bottom)); z-index: 10;
   }
   .tabbar a {
-    flex: 1;
-    max-width: 160px;
-    text-decoration: none;
-    text-align: center;
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 0;
-    border-radius: 12px;
+    flex: 1; text-decoration: none; text-align: center; color: var(--muted);
+    font-size: 10px; font-weight: 700; padding: 3px 0; border-radius: 10px;
   }
-  .tabbar a .ic { display: block; font-size: 19px; line-height: 1.2; }
+  .tabbar a .ic { display: block; font-size: 18px; line-height: 1.2; }
   .tabbar a[aria-current="page"] { color: var(--green); font-weight: 900; }
 
   .foot { font-size: 11px; line-height: 1.5; color: var(--muted); margin: 14px 0 0; }
   .empty { text-align: center; padding: 34px 16px; color: var(--muted); }
   .empty b { display: block; color: var(--ink); font-size: 16px; margin-bottom: 6px; }
+  .section-title { font-size: 17px; font-weight: 900; margin: 18px 0 10px; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -322,110 +171,70 @@
     </div>
     <div class="logo" aria-hidden="true">⛳</div>
   </header>
+  <div class="databar" id="databar"></div>
 
   <main id="view"></main>
 
   <nav class="tabbar" aria-label="Разделы">
     <a href="#/tournaments" data-tab="tournaments"><span class="ic" aria-hidden="true">▦</span>Турниры</a>
-    <a href="#/analytics" data-tab="analytics"><span class="ic" aria-hidden="true">⌁</span>Аналитика</a>
+    <a href="#/clubs" data-tab="clubs"><span class="ic" aria-hidden="true">⛳</span>Клубы</a>
     <a href="#/sources" data-tab="sources"><span class="ic" aria-hidden="true">◎</span>Источники</a>
+    <a href="#/archive" data-tab="archive"><span class="ic" aria-hidden="true">⌸</span>Архив</a>
+    <a href="#/analytics" data-tab="analytics"><span class="ic" aria-hidden="true">⌁</span>Аналитика</a>
   </nav>
 </div>
 
+<script src="data/golf-data.js"></script>
 <script>
 (function () {
   'use strict';
 
   /* ══════════════════════════════════════════════════════════
-     Данные. Одна копия — вместо трёх (App.js, main.py, sources.json).
-     Когда у API появится CORS, этот блок заменяется на fetch('/tournaments').
+     Данные приходят из data/golf-data.js (window.GOLF).
+     Внутри — выгрузка Golf_Sources_and_Clubs_CIS_2026.xlsx:
+     183 источника, 85 клубов, 14 записей архива + проверка сайтов.
      ══════════════════════════════════════════════════════════ */
 
-  var DATA_UPDATED = null; // дата ручной сверки, пока не подтверждена
+  var G = window.GOLF || null;
 
-  var EVENTS = [
-    {
-      id: 'ru-mini-2026',
-      name: 'Кубок России по мини-гольфу',
-      sport: 'Мини-гольф',
-      dates: '2–9 ноября 2026',
-      start: '2026-11-02',
-      end: '2026-11-09',
-      location: 'Санкт-Петербург · СШОР «Невские звёзды»',
-      region: 'Санкт-Петербург',
-      country: 'Россия',
-      level: 'Всероссийский',
-      declaredStatus: 'Предстоит',
-      organizer: 'Ассоциация гольфа России',
-      source: 'https://rusgolf.ru/ru/contests/tournament-calendar',
-      note: 'Дата и площадка указаны в календаре АГР; перед поездкой проверьте актуальный регламент у организатора.'
-    },
-    {
-      id: 'kr-krai-2026',
-      name: 'Чемпионат Краснодарского края по гольфу',
-      sport: 'Гольф',
-      dates: '5–8 ноября 2026',
-      start: '2026-11-05',
-      end: '2026-11-08',
-      location: 'Краснодарский край · «Геленджик гольф резорт»',
-      region: 'Краснодарский край',
-      country: 'Россия',
-      level: 'Региональный',
-      declaredStatus: 'Предстоит',
-      organizer: 'Краснодарская краевая федерация развития гольфа',
-      source: 'https://rusgolf.ru/ru/contests/tournament-calendar',
-      note: 'Информация взята из календаря АГР; условия участия могут уточняться организатором.'
-    },
-    {
-      id: 'belarus-open-2026',
-      name: 'XX Belarus Golf Open Cup',
-      sport: 'Гольф',
-      dates: '19–20 сентября 2026',
-      start: '2026-09-19',
-      end: '2026-09-20',
-      location: 'Беларусь · Минск',
-      region: 'Беларусь',
-      country: 'Беларусь',
-      level: 'Международный',
-      declaredStatus: 'Завершён',
-      organizer: 'Белорусская ассоциация гольфа',
-      source: 'https://ingolf.by/turniryi/kalendarnyij-plan-na-2026',
-      note: 'Победитель намеренно не указан: его нужно подтвердить официальным протоколом.'
-    }
+  var EVENTS = (G && G.events) || [
+    { id: 'ru-mini-2026', name: 'Кубок России по мини-гольфу', sport: 'Мини-гольф', dates: '2–9 ноября 2026', start: '2026-11-02', end: '2026-11-09', location: 'Санкт-Петербург · СШОР «Невские звёзды»', region: 'Санкт-Петербург', country: 'Россия', level: 'Всероссийский', declaredStatus: 'Предстоит', organizer: 'Ассоциация гольфа России', source: 'https://rusgolf.ru/ru/contests/tournament-calendar', note: 'Дата и площадка указаны в календаре АГР; перед поездкой проверьте актуальный регламент у организатора.' },
+    { id: 'kr-krai-2026', name: 'Чемпионат Краснодарского края по гольфу', sport: 'Гольф', dates: '5–8 ноября 2026', start: '2026-11-05', end: '2026-11-08', location: 'Краснодарский край · «Геленджик гольф резорт»', region: 'Краснодарский край', country: 'Россия', level: 'Региональный', declaredStatus: 'Предстоит', organizer: 'Краснодарская краевая федерация развития гольфа', source: 'https://rusgolf.ru/ru/contests/tournament-calendar', note: 'Информация взята из календаря АГР; условия участия могут уточняться организатором.' },
+    { id: 'belarus-open-2026', name: 'XX Belarus Golf Open Cup', sport: 'Гольф', dates: '19–20 сентября 2026', start: '2026-09-19', end: '2026-09-20', location: 'Беларусь · Минск', region: 'Беларусь', country: 'Беларусь', level: 'Международный', declaredStatus: 'Завершён', organizer: 'Белорусская ассоциация гольфа', source: 'https://ingolf.by/turniryi/kalendarnyij-plan-na-2026', note: 'Победитель намеренно не указан: его нужно подтвердить официальным протоколом.' }
   ];
 
-  var SOURCES = [
-    { name: 'Ассоциация гольфа России', country: 'Россия', type: 'Официальный календарь турниров', url: 'https://rusgolf.ru/ru/contests/tournament-calendar', status: 'Настроен · сбор ещё не запущен', trust: 5, auto: false },
-    { name: 'Документы и положения АГР', country: 'Россия', type: 'Регламенты и требования к участию', url: 'https://rusgolf.ru/ru/contests/sorevnovaniya-2026', status: 'Настроен · сбор ещё не запущен', trust: 5, auto: false },
-    { name: 'Федерация гольфа в г. Москве', country: 'Москва', type: 'Чемпионат Москвы, Первенство, Московский тур', url: 'https://mos-golf.ru/', status: 'Добавлен · автоматический сбор не запущен', trust: 5, auto: false },
-    { name: 'Москомспорт — календарь гольфа', country: 'Москва', type: 'Городские турниры, положения, расписания и протоколы', url: 'https://golf.mossport.ru/', status: 'Добавлен · проверять документы по турнирам', trust: 5, auto: false },
-    { name: 'Гольф.ру — календарь любительских турниров', country: 'Санкт-Петербург', type: 'Клубные и любительские турниры', url: 'https://golf.ru/when_play/lubitelskie/', status: 'Добавлен · агрегатор, нужна проверка у организатора', trust: 3, auto: false },
-    { name: 'Федерация гольфа Московской области', country: 'Московская область', type: 'Первенство, чемпионат и региональный календарь', url: 'https://mofrg.ru/competitions/calendar/', status: 'Добавлен · автоматический сбор не запущен', trust: 5, auto: false },
-    { name: 'АГР — турниры Краснодарского края', country: 'Краснодарский край', type: 'Чемпионат края и турниры в Геленджике', url: 'https://rusgolf.ru/ru/contests/tournament-calendar', status: 'Добавлен · даты требуют регулярной проверки', trust: 5, auto: false },
-    { name: 'Красноярская федерация гольфа', country: 'Красноярский край', type: 'Краевой календарь, новости и юниорские соревнования', url: 'https://krasgolf.ru/', status: 'Добавлен · календарь сезона проверять по году', trust: 5, auto: false },
-    { name: 'Казахстанская федерация гольфа — турниры Астаны', country: 'Астана', type: 'Кубок Астаны и Astana Championship Tour', url: 'https://fedgolf.kz/ru', status: 'Добавлен · старые сезоны требуют проверки', trust: 4, auto: false },
-    { name: 'Livescoring.ru — результаты турниров', country: 'Россия и СНГ', type: 'История турниров и онлайн-счёт', url: 'https://livescoring.ru/history/', status: 'Добавлен · результаты подтверждать протоколом', trust: 3, auto: false },
-    { name: 'Белорусская ассоциация гольфа', country: 'Беларусь', type: 'Календарь соревнований', url: 'https://ingolf.by/turniryi/kalendarnyij-plan-na-2026', status: 'Настроен · календарь может уточняться', trust: 5, auto: false },
-    { name: 'Казахстанская федерация гольфа', country: 'Казахстан', type: 'Турниры, новости и регистрация', url: 'https://fedgolf.kz/ru', status: 'Добавлен · даты сезона проверять вручную', trust: 4, auto: false },
-    { name: 'UZGolf', country: 'Узбекистан', type: 'Турниры и архив результатов', url: 'https://uzgolf.uz/en/events-en/', status: 'Добавлен · архив требует проверки актуальности', trust: 3, auto: false },
-    { name: 'World Amateur Golf Ranking (WAGR)', country: 'Международный', type: 'Рейтинг любительских игроков', url: 'https://www.wagr.com/', status: 'Добавлен · проверить условия автоматического доступа', trust: 4, auto: false }
-  ];
+  var SOURCES = (G && G.sources) || [];
+  var CLUBS = (G && G.clubs) || [];
+  var ARCHIVE = (G && G.archive) || [];
+  var CHECKS = (G && G.checks) || [];
+  var META = (G && G.meta) || {};
+  var DATA_UPDATED = META.exported || null;
+
+  var TYPE_LABEL = {
+    club_site: 'сайт клуба', social_media: 'соцсеть', regional_sports_portal: 'региональный портал',
+    regional_federation: 'региональная федерация', tournament_series: 'серия турниров',
+    training_venue: 'тренировочная база', governing_body: 'федерация', scoring_platform: 'платформа результатов',
+    official_calendar: 'официальный календарь', federation_registry: 'реестр федерации',
+    course_directory: 'каталог полей', calendar_aggregator: 'агрегатор календаря',
+    media: 'медиа', results_aggregator: 'агрегатор результатов', club_group: 'сеть клубов'
+  };
+
+  function typeLabel(t) { return TYPE_LABEL[t] || t || 'источник'; }
 
   /* ══════════════════════════════════════════════════════════
      Состояние
      ══════════════════════════════════════════════════════════ */
 
+  var LIMIT = 24;
+
   var state = {
     tab: 'tournaments',
     eventId: null,
-    q: '',
-    sport: 'Все',
-    region: 'Все',
-    level: 'Все',
-    onlySaved: false,
-    sort: 'date',
-    sourceCountry: 'Все',
-    sourceQ: ''
+    q: '', sport: 'Все', region: 'Все', level: 'Все', onlySaved: false, sort: 'date',
+    clubQ: '', clubCountry: 'Все',
+    sourceQ: '', sourceCountry: 'Все', sourceType: 'Все',
+    checkQ: '', checkState: 'Все',
+    shownClubs: LIMIT, shownSources: LIMIT, shownChecks: LIMIT, shownArchive: LIMIT
   };
 
   var saved = loadSaved();
@@ -435,9 +244,7 @@
       var raw = localStorage.getItem('mirgolf.saved');
       var arr = raw ? JSON.parse(raw) : [];
       return Array.isArray(arr) ? arr : [];
-    } catch (e) {
-      return [];
-    }
+    } catch (e) { return []; }
   }
 
   function storeSaved() {
@@ -449,13 +256,13 @@
      ══════════════════════════════════════════════════════════ */
 
   function esc(s) {
-    return String(s).replace(/[&<>"']/g, function (c) {
+    return String(s === undefined || s === null ? '' : s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
 
   function parseISO(s) {
-    var p = s.split('-');
+    var p = String(s).split('-');
     return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
   }
 
@@ -464,11 +271,8 @@
     return new Date(d.getFullYear(), d.getMonth(), d.getDate());
   })();
 
-  function daysBetween(a, b) {
-    return Math.round((b - a) / 86400000);
-  }
+  function daysBetween(a, b) { return Math.round((b - a) / 86400000); }
 
-  // статус считается из дат, а не берётся из текста
   function autoStatus(e) {
     var start = parseISO(e.start), end = parseISO(e.end);
     if (end < TODAY) return 'Завершён';
@@ -476,9 +280,7 @@
     return 'Идёт сейчас';
   }
 
-  function statusConflict(e) {
-    return e.declaredStatus !== autoStatus(e);
-  }
+  function statusConflict(e) { return e.declaredStatus !== autoStatus(e); }
 
   function plural(n, one, few, many) {
     var m10 = n % 10, m100 = n % 100;
@@ -492,22 +294,53 @@
     return names[parseISO(iso).getMonth()];
   }
 
-  function trustDots(n) {
-    var out = '';
-    for (var i = 1; i <= 5; i++) out += i <= n ? '●' : '○';
-    return out;
-  }
-
   function unique(list) {
     var seen = {}, out = [];
     for (var i = 0; i < list.length; i++) {
-      if (!seen[list[i]]) { seen[list[i]] = 1; out.push(list[i]); }
+      var v = list[i];
+      if (v && !seen[v]) { seen[v] = 1; out.push(v); }
     }
+    return out.sort(function (a, b) { return a.localeCompare(b, 'ru'); });
+  }
+
+  function countBy(list, key) {
+    var out = {};
+    list.forEach(function (x) {
+      var k = typeof key === 'function' ? key(x) : x[key];
+      if (k === undefined || k === null || k === '' || k === '—') return;
+      out[k] = (out[k] || 0) + 1;
+    });
     return out;
   }
 
+  function isLink(u) { return typeof u === 'string' && /^https?:\/\//i.test(u); }
+
+  function host(u) {
+    var m = String(u).match(/^https?:\/\/([^\/]+)/i);
+    return m ? m[1].replace(/^www\./, '') : String(u);
+  }
+
+  function checkState(code) {
+    var c = String(code);
+    if (/^2/.test(c)) return 'ok';
+    if (/^3/.test(c)) return 'redirect';
+    if (/^4/.test(c)) return 'client';
+    if (/^5/.test(c)) return 'server';
+    return 'none';
+  }
+
+  var STATE_LABEL = { ok: 'доступен', redirect: 'редирект', client: 'ошибка 4xx', server: 'ошибка 5xx', none: 'нет ответа' };
+
+  function badgeClass(code) {
+    var s = checkState(code);
+    if (s === 'ok') return 'dark';
+    if (s === 'redirect') return 'warn';
+    if (s === 'client' || s === 'server') return 'err';
+    return 'ghost';
+  }
+
   /* ══════════════════════════════════════════════════════════
-     Фильтрация
+     Турниры
      ══════════════════════════════════════════════════════════ */
 
   function filteredEvents() {
@@ -518,8 +351,8 @@
       if (state.level !== 'Все' && e.level !== state.level) return false;
       if (state.onlySaved && saved.indexOf(e.id) === -1) return false;
       if (!q) return true;
-      var hay = [e.name, e.location, e.region, e.country, e.organizer, e.level, e.sport, e.dates, e.start, e.end].join(' ').toLowerCase();
-      return hay.indexOf(q) !== -1;
+      return [e.name, e.location, e.region, e.country, e.organizer, e.level, e.sport, e.dates, e.start, e.end]
+        .join(' ').toLowerCase().indexOf(q) !== -1;
     });
     rows.sort(function (a, b) {
       if (state.sort === 'name') return a.name.localeCompare(b.name, 'ru');
@@ -529,33 +362,19 @@
     return rows;
   }
 
-  function filteredSources() {
-    var q = state.sourceQ.trim().toLowerCase();
-    return SOURCES.filter(function (s) {
-      if (state.sourceCountry !== 'Все' && s.country !== state.sourceCountry) return false;
-      if (!q) return true;
-      return (s.name + ' ' + s.type + ' ' + s.country + ' ' + s.status).toLowerCase().indexOf(q) !== -1;
-    });
-  }
-
-  /* ══════════════════════════════════════════════════════════
-     Экраны
-     ══════════════════════════════════════════════════════════ */
-
   function viewTournaments() {
     var rows = filteredEvents();
     var upcoming = EVENTS.filter(function (e) { return autoStatus(e) === 'Предстоит'; }).length;
     var live = EVENTS.filter(function (e) { return autoStatus(e) === 'Идёт сейчас'; }).length;
 
-    var html = '';
-
-    html += '<section class="hero">' +
+    var html = '<section class="hero">' +
       '<div class="label">ОБЗОР КАЛЕНДАРЯ</div>' +
       '<h2>Следи за игрой.<br>Не пропускай старт.</h2>' +
-      '<p>Демо-версия: данные сверены с официальными источниками вручную, автоматический сбор ещё не включён.</p>' +
+      '<p>Демо-версия: турниры сверены с официальными источниками вручную, автоматический сбор ещё не включён.</p>' +
       '<div class="stats">' +
         '<div class="stat"><b>' + EVENTS.length + '</b><span>' + plural(EVENTS.length, 'турнир', 'турнира', 'турниров') + '</span></div>' +
-        '<div class="stat"><b>' + (upcoming + live) + '</b><span>' + (live ? 'идут и предстоят' : 'предстоит') + '</span></div>' +
+        '<div class="stat"><b>' + (upcoming + live) + '</b><span>предстоит и идёт</span></div>' +
+        '<div class="stat"><b>' + CLUBS.length + '</b><span>' + plural(CLUBS.length, 'клуб', 'клуба', 'клубов') + '</span></div>' +
         '<div class="stat"><b>' + SOURCES.length + '</b><span>' + plural(SOURCES.length, 'источник', 'источника', 'источников') + '</span></div>' +
       '</div>' +
     '</section>';
@@ -606,7 +425,6 @@
     var status = autoStatus(e);
     var conflict = statusConflict(e);
     var star = saved.indexOf(e.id) !== -1 ? ' ★' : '';
-
     var html = '<a class="card event" href="#/event/' + esc(e.id) + '">' +
       '<div class="row between">' +
         '<span class="pill">' + esc(e.sport) + '</span>' +
@@ -619,11 +437,9 @@
         '<span class="pill ' + (conflict ? 'warn' : 'dark') + '">' + esc(status) + '</span>' +
         '<span class="more">Подробнее ↗</span>' +
       '</div>';
-
     if (conflict) {
       html += '<div class="note-warn">Статус в карточке устарел: указано «' + esc(e.declaredStatus) + '», по датам — «' + esc(status) + '». Нужна сверка с источником.</div>';
     }
-
     return html + '</a>';
   }
 
@@ -632,92 +448,325 @@
     var conflict = statusConflict(e);
     var isSaved = saved.indexOf(e.id) !== -1;
     var diff = daysBetween(TODAY, parseISO(e.start));
-    var human = '';
+    var human;
 
-    if (status === 'Предстоит') {
-      human = 'Старт через ' + diff + ' ' + plural(diff, 'день', 'дня', 'дней');
-    } else if (status === 'Завершён') {
-      human = 'Завершён ' + Math.abs(daysBetween(TODAY, parseISO(e.end))) + ' ' + plural(Math.abs(daysBetween(TODAY, parseISO(e.end))), 'день', 'дня', 'дней') + ' назад';
-    } else {
-      human = 'Идёт сейчас';
-    }
+    if (status === 'Предстоит') human = 'Старт через ' + diff + ' ' + plural(diff, 'день', 'дня', 'дней');
+    else if (status === 'Завершён') {
+      var back = Math.abs(daysBetween(TODAY, parseISO(e.end)));
+      human = 'Завершён ' + back + ' ' + plural(back, 'день', 'дня', 'дней') + ' назад';
+    } else human = 'Идёт сейчас';
 
-    var html = '<a class="back" href="#/tournaments">← Все турниры</a>';
-
-    html += '<div class="detail-hero">' +
-      '<span class="pill dark" style="background:rgba(255,255,255,.16)">' + esc(e.sport) + ' · ' + esc(e.level) + '</span>' +
-      '<h2>' + esc(e.name) + '</h2>' +
-      '<div class="when">◷ ' + esc(e.dates) + '</div>' +
-      '<div class="where">⌖ ' + esc(e.location) + '</div>' +
-    '</div>';
-
-    html += '<div class="card">' +
-      '<h4>Статус и организатор</h4>' +
-      '<div class="kv"><span>По датам</span><span>' + esc(status) + '</span></div>' +
-      '<div class="kv"><span>В карточке</span><span>' + esc(e.declaredStatus) + '</span></div>' +
-      '<div class="kv"><span>Отсчёт</span><span>' + esc(human) + '</span></div>' +
-      '<div class="kv"><span>Организатор</span><span>' + esc(e.organizer || 'уточняется') + '</span></div>' +
-      '<div class="kv"><span>Регион</span><span>' + esc(e.region) + '</span></div>' +
-    '</div>';
+    var html = '<a class="back" href="#/tournaments">← Все турниры</a>' +
+      '<div class="detail-hero">' +
+        '<span class="pill dark" style="background:rgba(255,255,255,.16)">' + esc(e.sport) + ' · ' + esc(e.level) + '</span>' +
+        '<h2>' + esc(e.name) + '</h2>' +
+        '<div class="when">◷ ' + esc(e.dates) + '</div>' +
+        '<div class="where">⌖ ' + esc(e.location) + '</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<h4>Статус и организатор</h4>' +
+        '<div class="kv"><span>По датам</span><span>' + esc(status) + '</span></div>' +
+        '<div class="kv"><span>В карточке</span><span>' + esc(e.declaredStatus) + '</span></div>' +
+        '<div class="kv"><span>Отсчёт</span><span>' + esc(human) + '</span></div>' +
+        '<div class="kv"><span>Организатор</span><span>' + esc(e.organizer || 'уточняется') + '</span></div>' +
+        '<div class="kv"><span>Регион</span><span>' + esc(e.region) + '</span></div>' +
+      '</div>';
 
     if (conflict) {
       html += '<div class="note-warn" style="margin-bottom:12px">Расхождение: в карточке «' + esc(e.declaredStatus) + '», по датам — «' + esc(status) + '». Статус не перезаписывается автоматически — его подтверждает первоисточник.</div>';
     }
 
     html += '<div class="card">' +
-      '<h4>Важная заметка</h4>' +
-      '<p>' + esc(e.note) + '</p>' +
-      '<p class="small" style="margin-top:10px">Победитель, счёт и требования не добавляются без подтверждённого протокола.</p>' +
-      '<p class="small" style="margin-top:6px">Дата проверки: ' + (DATA_UPDATED ? esc(DATA_UPDATED) : 'не указана') + '</p>' +
-    '</div>';
-
-    html += '<a class="btn" href="' + esc(e.source) + '" target="_blank" rel="noopener">Открыть первоисточник ↗</a>';
-    html += '<button class="btn ghost" data-fav="' + esc(e.id) + '">' + (isSaved ? '★ В избранном' : '☆ Добавить в избранное') + '</button>';
+        '<h4>Важная заметка</h4>' +
+        '<p>' + esc(e.note) + '</p>' +
+        '<p class="small" style="margin-top:10px">Победитель, счёт и требования не добавляются без подтверждённого протокола.</p>' +
+        '<p class="small" style="margin-top:6px">Дата выгрузки данных: ' + (DATA_UPDATED ? esc(DATA_UPDATED) : 'не указана') + '</p>' +
+      '</div>' +
+      '<a class="btn" href="' + esc(e.source) + '" target="_blank" rel="noopener">Открыть первоисточник ↗</a>' +
+      '<button class="btn ghost" data-fav="' + esc(e.id) + '">' + (isSaved ? '★ В избранном' : '☆ Добавить в избранное') + '</button>';
 
     return html;
   }
 
-  function viewAnalytics() {
-    var total = EVENTS.length;
-    var byMonth = {}, byRegion = {}, bySport = {}, byLevel = {};
-    EVENTS.forEach(function (e) {
-      byMonth[monthName(e.start)] = (byMonth[monthName(e.start)] || 0) + 1;
-      byRegion[e.region] = (byRegion[e.region] || 0) + 1;
-      bySport[e.sport] = (bySport[e.sport] || 0) + 1;
-      byLevel[e.level] = (byLevel[e.level] || 0) + 1;
-    });
+  /* ══════════════════════════════════════════════════════════
+     Клубы
+     ══════════════════════════════════════════════════════════ */
 
+  function filteredClubs() {
+    var q = state.clubQ.trim().toLowerCase();
+    return CLUBS.filter(function (c) {
+      if (state.clubCountry !== 'Все' && c.country !== state.clubCountry) return false;
+      if (!q) return true;
+      return [c.name, c.region, c.country, c.type, c.note, c.site].join(' ').toLowerCase().indexOf(q) !== -1;
+    });
+  }
+
+  function viewClubs() {
+    var rows = filteredClubs();
+    var withSite = CLUBS.filter(function (c) { return isLink(c.site); }).length;
+    var withSocial = CLUBS.filter(function (c) { return isLink(c.telegram) || isLink(c.social); }).length;
+
+    var html = '<h2 style="margin:2px 0 8px;font-size:24px;font-weight:900">Клубы</h2>' +
+      '<p class="muted small" style="margin:0 0 14px">' + CLUBS.length + ' ' + plural(CLUBS.length, 'клуб', 'клуба', 'клубов') + ' из таблицы «Клубы СНГ»: сайт, Telegram и соцсети сведены в одну строку на клуб.</p>';
+
+    html += '<div class="stats" style="margin-bottom:14px">' +
+      '<div class="stat" style="background:#fff;border:1px solid var(--line)"><b style="color:var(--green)">' + withSite + '</b><span style="color:var(--muted)">с сайтом</span></div>' +
+      '<div class="stat" style="background:#fff;border:1px solid var(--line)"><b style="color:var(--green)">' + withSocial + '</b><span style="color:var(--muted)">с соцсетями</span></div>' +
+      '<div class="stat" style="background:#fff;border:1px solid var(--line)"><b style="color:var(--green)">' + unique(CLUBS.map(function (c) { return c.country; })).length + '</b><span style="color:var(--muted)">стран</span></div>' +
+    '</div>';
+
+    html += '<input class="search" id="cq" type="search" value="' + esc(state.clubQ) + '" placeholder="Название клуба, город, регион…" aria-label="Поиск по клубам">';
+
+    html += '<div class="chips" role="group" aria-label="Страна клуба">';
+    ['Все'].concat(unique(CLUBS.map(function (c) { return c.country; }))).forEach(function (c) {
+      html += '<button class="chip" data-club-country="' + esc(c) + '" aria-pressed="' + (state.clubCountry === c) + '">' + (c === 'Все' ? 'Все страны' : esc(c)) + '</button>';
+    });
+    html += '</div>';
+
+    html += '<div class="row between" style="margin-bottom:10px"><span class="muted small">' + rows.length + ' ' + plural(rows.length, 'клуб', 'клуба', 'клубов') + '</span></div>';
+
+    if (!rows.length) {
+      html += '<div class="empty"><b>Ничего не нашлось</b>Измените запрос или страну.</div>';
+    } else {
+      rows.slice(0, state.shownClubs).forEach(function (c) { html += clubCard(c); });
+      if (rows.length > state.shownClubs) {
+        html += '<button class="btn more-btn" data-more="clubs">Показать ещё (' + (rows.length - state.shownClubs) + ')</button>';
+      }
+    }
+
+    html += '<p class="foot">Список собран по каталогу АГР, Golf.ru, GreenFee, национальным федерациям и открытым источникам. Частные закрытые клубы могли не попасть.</p>';
+    return html;
+  }
+
+  function clubCard(c) {
+    var links = '';
+    if (isLink(c.site)) links += '<a href="' + esc(c.site) + '" target="_blank" rel="noopener">Сайт ↗</a>';
+    if (isLink(c.telegram)) links += '<a href="' + esc(c.telegram) + '" target="_blank" rel="noopener">Telegram ↗</a>';
+    if (isLink(c.social)) links += '<a href="' + esc(c.social) + '" target="_blank" rel="noopener">' + (/instagram/i.test(c.social) ? 'Instagram' : /vk\./i.test(c.social) ? 'VK' : 'Соцсеть') + ' ↗</a>';
+
+    return '<div class="card club">' +
+      '<div class="row between"><span class="idx">КЛУБ ' + String(c.n).padStart(3, '0') + '</span><span class="muted small">' + esc(c.type) + '</span></div>' +
+      '<h3>' + esc(c.name) + '</h3>' +
+      '<div class="meta">' + esc(c.country) + (c.region ? ' · ' + esc(c.region) : '') + '</div>' +
+      (links ? '<div class="links">' + links + '</div>' : '<div class="st" style="color:var(--muted)">Публичных ссылок нет</div>') +
+      (c.note ? '<p class="note">' + esc(c.note) + '</p>' : '') +
+    '</div>';
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     Источники
+     ══════════════════════════════════════════════════════════ */
+
+  function filteredSources() {
+    var q = state.sourceQ.trim().toLowerCase();
+    return SOURCES.filter(function (s) {
+      if (state.sourceCountry !== 'Все' && s.country !== state.sourceCountry) return false;
+      if (state.sourceType !== 'Все' && s.type !== state.sourceType) return false;
+      if (!q) return true;
+      return [s.name, s.country, s.region, s.type, s.roles, s.owner, s.status, s.url, s.note].join(' ').toLowerCase().indexOf(q) !== -1;
+    });
+  }
+
+  function statusPill(status) {
+    if (/перепровер/i.test(status)) return 'warn';
+    if (/проверена/i.test(status)) return 'dark';
+    return 'ghost';
+  }
+
+  function viewSources() {
+    var rows = filteredSources();
+    var types = unique(SOURCES.map(function (s) { return s.type; }));
+
+    var html = '<h2 style="margin:2px 0 8px;font-size:24px;font-weight:900">Источники</h2>' +
+      '<p class="muted small" style="margin:0 0 14px">' + SOURCES.length + ' ' + plural(SOURCES.length, 'активный источник', 'активных источника', 'активных источников') + ' из выгрузки: клубы, федерации, календари, платформы результатов и соцсети. У каждого — тип, роль и статус проверки.</p>';
+
+    html += '<input class="search" id="sq" type="search" value="' + esc(state.sourceQ) + '" placeholder="Название, страна, роль, домен…" aria-label="Поиск по источникам">';
+
+    html += '<div class="chips" role="group" aria-label="Страна источника">';
+    ['Все'].concat(unique(SOURCES.map(function (s) { return s.country; }))).forEach(function (c) {
+      html += '<button class="chip" data-country="' + esc(c) + '" aria-pressed="' + (state.sourceCountry === c) + '">' + (c === 'Все' ? 'Все страны' : esc(c)) + '</button>';
+    });
+    html += '</div>';
+
+    html += '<div class="filters"><select id="stype" aria-label="Тип источника" style="grid-column: span 2">' +
+      '<option value="Все"' + (state.sourceType === 'Все' ? ' selected' : '') + '>Все типы источников</option>' +
+      types.map(function (t) {
+        return '<option value="' + esc(t) + '"' + (state.sourceType === t ? ' selected' : '') + '>' + esc(typeLabel(t)) + '</option>';
+      }).join('') +
+    '</select></div>';
+
+    html += '<div class="row between" style="margin-bottom:10px"><span class="muted small">' + rows.length + ' ' + plural(rows.length, 'источник', 'источника', 'источников') + '</span></div>';
+
+    if (!rows.length) {
+      html += '<div class="empty"><b>Ничего не нашлось</b>Измените запрос или фильтры.</div>';
+    } else {
+      rows.slice(0, state.shownSources).forEach(function (s) { html += sourceCard(s); });
+      if (rows.length > state.shownSources) {
+        html += '<button class="btn more-btn" data-more="sources">Показать ещё (' + (rows.length - state.shownSources) + ')</button>';
+      }
+    }
+
+    html += '<p class="foot">Статус «найдено в поиске» или «из каталога» значит, что адрес подтверждён, но страница не открывалась вручную. Перед запуском сбора проверьте условия использования и robots.txt.</p>';
+    return html;
+  }
+
+  function sourceCard(s) {
+    var chk = checkFor(s.url);
+    var extra = '';
+    if (chk) {
+      extra = '<span class="pill ' + badgeClass(chk.code) + '" style="font-size:10px;padding:4px 8px">' + (chk.code === '000' ? 'нет ответа' : 'HTTP ' + chk.code) + '</span>';
+    }
+    return '<a class="card src" href="' + esc(s.url) + '" target="_blank" rel="noopener">' +
+      '<div class="row between"><span class="idx">ИСТОЧНИК ' + String(s.n).padStart(3, '0') + '</span>' + extra + '</div>' +
+      '<h3>' + esc(s.name) + '</h3>' +
+      '<div class="meta">' + esc(s.country) + (s.region ? ' · ' + esc(s.region) : '') + ' · ' + esc(typeLabel(s.type)) + '</div>' +
+      '<div class="meta" style="margin-top:4px">' + esc(s.channel || 'Сайт') + ' · ' + esc(s.roles || '') + '</div>' +
+      '<div class="st"><span class="pill ' + statusPill(s.status) + '" style="font-size:10px;padding:4px 8px">' + esc(s.status) + '</span></div>' +
+      (s.note ? '<p class="note">' + esc(s.note) + '</p>' : '') +
+    '</a>';
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     Архив и проверка доступности
+     ══════════════════════════════════════════════════════════ */
+
+  var checkIndex = null;
+
+  function buildCheckIndex() {
+    checkIndex = {};
+    CHECKS.forEach(function (c) { checkIndex[c.url] = c; });
+  }
+
+  function checkFor(url) {
+    if (!checkIndex) buildCheckIndex();
+    return checkIndex[url] || null;
+  }
+
+  function filteredChecks() {
+    var q = state.checkQ.trim().toLowerCase();
+    return CHECKS.filter(function (c) {
+      if (state.checkState !== 'Все' && checkState(c.code) !== state.checkState) return false;
+      if (!q) return true;
+      return [c.url, c.final, c.title, c.desc].join(' ').toLowerCase().indexOf(q) !== -1;
+    });
+  }
+
+  function viewArchive() {
+    var ok = CHECKS.filter(function (c) { return checkState(c.code) === 'ok'; }).length;
+    var redirect = CHECKS.filter(function (c) { return checkState(c.code) === 'redirect'; }).length;
+    var err = CHECKS.filter(function (c) { var s = checkState(c.code); return s === 'client' || s === 'server'; }).length;
+    var none = CHECKS.filter(function (c) { return checkState(c.code) === 'none'; }).length;
+
+    var html = '<h2 style="margin:2px 0 8px;font-size:24px;font-weight:900">Архив</h2>' +
+      '<p class="muted small" style="margin:0 0 14px">Исключённые домены и результат обхода сайтов из реестра: код ответа, заголовок и адрес после редиректов.</p>';
+
+    html += '<div class="stats" style="margin-bottom:16px">' +
+      '<div class="stat" style="background:#fff;border:1px solid var(--line)"><b style="color:var(--green)">' + ok + '</b><span style="color:var(--muted)">отвечают</span></div>' +
+      '<div class="stat" style="background:#fff;border:1px solid var(--line)"><b style="color:#8A5B00">' + redirect + '</b><span style="color:var(--muted)">редирект</span></div>' +
+      '<div class="stat" style="background:#fff;border:1px solid var(--line)"><b style="color:var(--red)">' + err + '</b><span style="color:var(--muted)">ошибки</span></div>' +
+      '<div class="stat" style="background:#fff;border:1px solid var(--line)"><b style="color:var(--muted)">' + none + '</b><span style="color:var(--muted)">нет ответа</span></div>' +
+    '</div>';
+
+    // исключённые
+    html += '<div class="section-title">Исключённые источники · ' + ARCHIVE.length + '</div>';
+    if (!ARCHIVE.length) {
+      html += '<p class="small muted">Нет записей.</p>';
+    } else {
+      ARCHIVE.forEach(function (a) {
+        html += '<div class="card">' +
+          '<div class="row between"><span class="idx">АРХИВ ' + String(a.n).padStart(2, '0') + '</span><span class="pill ghost" style="font-size:10px;padding:4px 8px">' + esc(a.category) + '</span></div>' +
+          '<h3 style="margin:6px 0 4px;font-size:15px;font-weight:900">' + esc(a.name) + '</h3>' +
+          '<div class="check"><span class="url">' + esc(a.url) + '</span></div>' +
+          '<p class="note" style="margin:8px 0 0;font-size:12px;color:var(--muted)">' + esc(a.reason) + '</p>' +
+        '</div>';
+      });
+    }
+
+    // проверка сайтов
+    var rows = filteredChecks();
+    html += '<div class="section-title">Проверка сайтов · ' + CHECKS.length + '</div>';
+
+    html += '<input class="search" id="chq" type="search" value="' + esc(state.checkQ) + '" placeholder="Домен, заголовок…" aria-label="Поиск по проверкам">';
+
+    html += '<div class="chips" role="group" aria-label="Состояние сайта">';
+    [['Все', 'Все'], ['ok', 'Отвечают'], ['redirect', 'Редирект'], ['client', '4xx'], ['server', '5xx'], ['none', 'Нет ответа']].forEach(function (p) {
+      html += '<button class="chip" data-check="' + p[0] + '" aria-pressed="' + (state.checkState === p[0]) + '">' + p[1] + '</button>';
+    });
+    html += '</div>';
+
+    if (!rows.length) {
+      html += '<div class="empty"><b>Нет записей</b>Измените фильтр.</div>';
+    } else {
+      rows.slice(0, state.shownChecks).forEach(function (c) {
+        html += '<a class="card check" href="' + esc(c.url) + '" target="_blank" rel="noopener">' +
+          '<div class="row between">' +
+            '<span class="pill ' + badgeClass(c.code) + '" style="font-size:10px;padding:4px 8px">' + (c.code === '000' ? 'нет ответа' : 'HTTP ' + c.code) + '</span>' +
+            '<span class="muted small">' + esc(host(c.url)) + '</span>' +
+          '</div>' +
+          '<h3>' + esc(c.title || (checkState(c.code) === 'none' ? 'Сайт не ответил' : 'Без заголовка')) + '</h3>' +
+          (c.desc ? '<p class="note" style="margin:2px 0 0;font-size:12px;color:var(--muted)">' + esc(c.desc) + '</p>' : '') +
+          '<div class="url">' + esc(c.url) + '</div>' +
+          (c.final && c.final !== c.url ? '<div class="url">→ ' + esc(c.final) + '</div>' : '') +
+        '</a>';
+      });
+      if (rows.length > state.shownChecks) {
+        html += '<button class="btn more-btn" data-more="checks">Показать ещё (' + (rows.length - state.shownChecks) + ')</button>';
+      }
+    }
+
+    html += '<p class="foot">Обход — разовая проверка главных страниц: код ответа и заголовок. Он не подтверждает актуальность дат турниров и не заменяет официальный протокол.</p>';
+    return html;
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     Аналитика
+     ══════════════════════════════════════════════════════════ */
+
+  function viewAnalytics() {
     var conflicts = EVENTS.filter(statusConflict).length;
-    var avgTrust = SOURCES.reduce(function (s, x) { return s + x.trust; }, 0) / SOURCES.length;
-    var automated = SOURCES.filter(function (s) { return s.auto; }).length;
-    var official = SOURCES.filter(function (s) { return s.trust === 5; }).length;
+    var byStatus = countBy(SOURCES, 'status');
+    var byType = countBy(SOURCES, 'type');
+    var byCountry = countBy(SOURCES, 'country');
+    var clubsByCountry = countBy(CLUBS, 'country');
+    var checkStates = countBy(CHECKS, function (c) { return STATE_LABEL[checkState(c.code)]; });
+    var withTelegram = CLUBS.filter(function (c) { return isLink(c.telegram); }).length;
+    var noSite = CLUBS.filter(function (c) { return !isLink(c.site); }).length;
 
     var html = '<h2 style="margin:2px 0 8px;font-size:24px;font-weight:900">Аналитика</h2>' +
-      '<p class="muted small" style="margin:0 0 16px">Считается по тем же данным, что и календарь. Никаких оценок и прогнозов — только то, что есть в реестре.</p>';
+      '<p class="muted small" style="margin:0 0 16px">Считается по выгрузке: ' + SOURCES.length + ' источников, ' + CLUBS.length + ' клубов, ' + CHECKS.length + ' проверенных адресов. Только факты, без прогнозов.</p>';
 
-    html += '<div class="card"><h4>Качество данных</h4>' +
-      '<div class="kv"><span>Турниров в демо</span><span>' + total + '</span></div>' +
-      '<div class="kv"><span>Статус расходится с датами</span><span>' + conflicts + '</span></div>' +
-      '<div class="kv"><span>С подтверждённой датой проверки</span><span>' + (DATA_UPDATED ? total : 0) + '</span></div>' +
-      '<div class="kv"><span>Источников с автосбором</span><span>' + automated + ' из ' + SOURCES.length + '</span></div>' +
-      '<p class="small" style="margin-top:10px">Пока автоматического сбора нет, любое расхождение — повод открыть первоисточник, а не править данные вручную.</p>' +
+    html += '<div class="card"><h4>Охват</h4>' +
+      '<div class="kv"><span>Активных источников</span><span>' + SOURCES.length + '</span></div>' +
+      '<div class="kv"><span>Клубов в реестре</span><span>' + CLUBS.length + '</span></div>' +
+      '<div class="kv"><span>Клубов с Telegram</span><span>' + withTelegram + '</span></div>' +
+      '<div class="kv"><span>Клубов без сайта</span><span>' + noSite + '</span></div>' +
+      '<div class="kv"><span>Исключено в архив</span><span>' + ARCHIVE.length + '</span></div>' +
+      '<div class="kv"><span>Турниров с расхождением статуса</span><span>' + conflicts + '</span></div>' +
     '</div>';
 
-    html += '<div class="card"><h4>Турниры по месяцам</h4>' + bars(byMonth) + '</div>';
-    html += '<div class="card"><h4>По регионам</h4>' + bars(byRegion) + '</div>';
-    html += '<div class="card"><h4>По видам спорта</h4>' + bars(bySport) + '</div>';
-    html += '<div class="card"><h4>По уровню</h4>' + bars(byLevel) + '</div>';
+    html += '<div class="card"><h4>Доступность сайтов</h4>' + bars(checkStates) +
+      '<p class="small" style="margin-top:10px">Проверка главных страниц: ' + CHECKS.length + ' адресов. Ошибки и отсутствие ответа — повод заменить источник, а не удалять данные.</p></div>';
 
-    html += '<div class="card"><h4>Источники</h4>' +
-      '<div class="kv"><span>Всего в реестре</span><span>' + SOURCES.length + '</span></div>' +
-      '<div class="kv"><span>С максимальным доверием</span><span>' + official + '</span></div>' +
-      '<div class="kv"><span>Среднее доверие</span><span>' + avgTrust.toFixed(1) + ' / 5</span></div>' +
-      '<div class="kv"><span>Уникальных адресов</span><span>' + unique(SOURCES.map(function (s) { return s.url; })).length + '</span></div>' +
-      '<p class="small" style="margin-top:10px">Адресов меньше, чем записей: часть регионов пока ссылается на общий календарь АГР. Это стоит развести на отдельные источники.</p>' +
-    '</div>';
+    html += '<div class="card"><h4>Источники по типу</h4>' + bars(mapLabels(byType, typeLabel)) + '</div>';
+    html += '<div class="card"><h4>Статус проверки источников</h4>' + bars(byStatus) + '</div>';
+    html += '<div class="card"><h4>Источники по странам</h4>' + bars(topN(byCountry, 8)) + '</div>';
+    html += '<div class="card"><h4>Клубы по странам</h4>' + bars(topN(clubsByCountry, 8)) + '</div>';
 
-    html += '<p class="foot">Каркас для будущих отчётов: когда появятся результаты и протоколы, здесь добавятся победители, счёт и динамика по игрокам.</p>';
+    html += '<p class="foot">Когда появится сбор и протоколы, здесь добавятся победители, счёт и динамика по игрокам.</p>';
     return html;
+  }
+
+  function mapLabels(map, fn) {
+    var out = {};
+    Object.keys(map).forEach(function (k) { out[fn(k)] = map[k]; });
+    return out;
+  }
+
+  function topN(map, n) {
+    var keys = Object.keys(map).sort(function (a, b) { return map[b] - map[a]; }).slice(0, n);
+    var out = {};
+    keys.forEach(function (k) { out[k] = map[k]; });
+    return out;
   }
 
   function bars(map) {
@@ -734,46 +783,15 @@
     }).join('');
   }
 
-  function viewSources() {
-    var rows = filteredSources();
-
-    var html = '<h2 style="margin:2px 0 8px;font-size:24px;font-weight:900">Источники</h2>' +
-      '<p class="muted small" style="margin:0 0 14px">Реестр ссылок: Москва, Санкт-Петербург, Московская область, Краснодарский и Красноярский края, Астана и национальные федерации. Автоматический ежедневный сбор ещё не запущен.</p>';
-
-    html += '<input class="search" id="sq" type="search" value="' + esc(state.sourceQ) + '" placeholder="Название, страна, тип…" aria-label="Поиск по источникам">';
-
-    html += '<div class="chips" role="group" aria-label="Страна источника">';
-    ['Все'].concat(unique(SOURCES.map(function (s) { return s.country; }))).forEach(function (c) {
-      html += '<button class="chip" data-country="' + esc(c) + '" aria-pressed="' + (state.sourceCountry === c) + '">' + (c === 'Все' ? 'Все страны' : esc(c)) + '</button>';
-    });
-    html += '</div>';
-
-    html += '<div class="row between" style="margin-bottom:10px"><span class="muted small">' + rows.length + ' ' + plural(rows.length, 'источник', 'источника', 'источников') + '</span></div>';
-
-    if (!rows.length) {
-      html += '<div class="empty"><b>Ничего не нашлось</b>Измените запрос или страну.</div>';
-    } else {
-      rows.forEach(function (s, i) {
-        html += '<a class="card src" href="' + esc(s.url) + '" target="_blank" rel="noopener">' +
-          '<div class="idx">ИСТОЧНИК ' + String(i + 1).padStart(2, '0') + '</div>' +
-          '<h3>' + esc(s.name) + '</h3>' +
-          '<div class="meta">' + esc(s.country) + ' · <span class="trust" aria-label="Доверие ' + s.trust + ' из 5">' + trustDots(s.trust) + '</span> ' + s.trust + '/5</div>' +
-          '<div class="meta" style="margin-top:4px">' + esc(s.type) + '</div>' +
-          '<div class="st">' + esc(s.status) + ' · Открыть ↗</div>' +
-        '</a>';
-      });
-    }
-
-    html += '<p class="foot">Перед запуском сбора проверьте условия использования, robots.txt и наличие официального API/RSS у каждого сайта.</p>';
-    return html;
-  }
-
   /* ══════════════════════════════════════════════════════════
      Рендер и маршрутизация
      ══════════════════════════════════════════════════════════ */
 
   var view = document.getElementById('view');
   var tabbar = document.querySelector('.tabbar');
+  var databar = document.getElementById('databar');
+
+  var TABS = ['tournaments', 'clubs', 'sources', 'archive', 'analytics'];
 
   function currentHash() {
     return (location.hash || '#/tournaments').replace(/^#\/?/, '');
@@ -790,10 +808,12 @@
       view.innerHTML = e ? viewEvent(e) : '<div class="empty"><b>Турнир не найден</b><a class="back" href="#/tournaments">← К календарю</a></div>';
     } else {
       state.eventId = null;
-      state.tab = ['tournaments', 'analytics', 'sources'].indexOf(h) !== -1 ? h : 'tournaments';
-      view.innerHTML = state.tab === 'analytics' ? viewAnalytics()
-        : state.tab === 'sources' ? viewSources()
-        : viewTournaments();
+      state.tab = TABS.indexOf(h) !== -1 ? h : 'tournaments';
+      if (state.tab === 'clubs') view.innerHTML = viewClubs();
+      else if (state.tab === 'sources') view.innerHTML = viewSources();
+      else if (state.tab === 'archive') view.innerHTML = viewArchive();
+      else if (state.tab === 'analytics') view.innerHTML = viewAnalytics();
+      else view.innerHTML = viewTournaments();
     }
 
     var links = tabbar.querySelectorAll('a');
@@ -805,39 +825,75 @@
     if (!keepScroll) window.scrollTo(0, 0);
   }
 
+  function renderDataBar() {
+    var parts = [];
+    if (DATA_UPDATED) parts.push('выгрузка ' + DATA_UPDATED);
+    if (SOURCES.length) parts.push(SOURCES.length + ' ' + plural(SOURCES.length, 'источник', 'источника', 'источников'));
+    if (CLUBS.length) parts.push(CLUBS.length + ' ' + plural(CLUBS.length, 'клуб', 'клуба', 'клубов'));
+    if (CHECKS.length) parts.push(CHECKS.length + ' ' + plural(CHECKS.length, 'проверенный адрес', 'проверенных адреса', 'проверенных адресов'));
+    databar.textContent = parts.join(' · ') || 'данные не загружены';
+  }
+
   /* ══════════════════════════════════════════════════════════
      События интерфейса
      ══════════════════════════════════════════════════════════ */
 
+  function resetLimits(which) {
+    if (which === 'clubs') state.shownClubs = LIMIT;
+    else if (which === 'sources') state.shownSources = LIMIT;
+    else if (which === 'checks') state.shownChecks = LIMIT;
+  }
+
+  function rerenderCurrent() {
+    var el = document.activeElement;
+    var focusId = el && el.id;
+    var pos = focusId ? el.selectionStart : 0;
+    render(true);
+    if (focusId) {
+      var again = document.getElementById(focusId);
+      if (again) {
+        again.focus();
+        try { again.setSelectionRange(pos, pos); } catch (err) {}
+      }
+    }
+  }
+
   view.addEventListener('input', function (e) {
-    if (e.target.id === 'q') { state.q = e.target.value; rerenderList(); }
-    else if (e.target.id === 'sq') { state.sourceQ = e.target.value; view.innerHTML = viewSources(); focusBack('sq'); }
+    var id = e.target.id;
+    if (id === 'q') { state.q = e.target.value; rerenderCurrent(); }
+    else if (id === 'cq') { state.clubQ = e.target.value; resetLimits('clubs'); rerenderCurrent(); }
+    else if (id === 'sq') { state.sourceQ = e.target.value; resetLimits('sources'); rerenderCurrent(); }
+    else if (id === 'chq') { state.checkQ = e.target.value; resetLimits('checks'); rerenderCurrent(); }
   });
 
   view.addEventListener('change', function (e) {
     var id = e.target.id;
-    if (id === 'region') { state.region = e.target.value; rerenderList(); }
-    else if (id === 'level') { state.level = e.target.value; rerenderList(); }
-    else if (id === 'sort') { state.sort = e.target.value; rerenderList(); }
+    if (id === 'region') { state.region = e.target.value; rerenderCurrent(); }
+    else if (id === 'level') { state.level = e.target.value; rerenderCurrent(); }
+    else if (id === 'sort') { state.sort = e.target.value; rerenderCurrent(); }
+    else if (id === 'stype') { state.sourceType = e.target.value; resetLimits('sources'); rerenderCurrent(); }
   });
 
   view.addEventListener('click', function (e) {
-    var t = e.target.closest('[data-sport],[data-saved],[data-reset],[data-country],[data-fav]');
+    var t = e.target.closest('[data-sport],[data-saved],[data-reset],[data-country],[data-club-country],[data-check],[data-more],[data-fav]');
     if (!t) return;
 
-    if (t.dataset.sport) {
-      state.sport = t.dataset.sport;
-      rerenderList();
-    } else if (t.dataset.saved) {
-      state.onlySaved = !state.onlySaved;
-      rerenderList();
-    } else if (t.dataset.reset) {
+    if (t.dataset.sport !== undefined) { state.sport = t.dataset.sport; rerenderCurrent(); }
+    else if (t.dataset.saved !== undefined) { state.onlySaved = !state.onlySaved; rerenderCurrent(); }
+    else if (t.dataset.reset !== undefined) {
       state.q = ''; state.sport = 'Все'; state.region = 'Все'; state.level = 'Все'; state.onlySaved = false;
-      rerenderList();
-    } else if (t.dataset.country) {
-      state.sourceCountry = t.dataset.country;
-      view.innerHTML = viewSources();
-    } else if (t.dataset.fav) {
+      rerenderCurrent();
+    }
+    else if (t.dataset.country !== undefined) { state.sourceCountry = t.dataset.country; resetLimits('sources'); rerenderCurrent(); }
+    else if (t.dataset.clubCountry !== undefined) { state.clubCountry = t.dataset.clubCountry; resetLimits('clubs'); rerenderCurrent(); }
+    else if (t.dataset.check !== undefined) { state.checkState = t.dataset.check; resetLimits('checks'); rerenderCurrent(); }
+    else if (t.dataset.more) {
+      if (t.dataset.more === 'clubs') state.shownClubs += LIMIT;
+      else if (t.dataset.more === 'sources') state.shownSources += LIMIT;
+      else if (t.dataset.more === 'checks') state.shownChecks += LIMIT;
+      rerenderCurrent();
+    }
+    else if (t.dataset.fav) {
       var id = t.dataset.fav;
       var at = saved.indexOf(id);
       if (at === -1) saved.push(id); else saved.splice(at, 1);
@@ -846,32 +902,9 @@
     }
   });
 
-  function focusBack(id) {
-    var el = document.getElementById(id);
-    if (!el) return;
-    el.focus();
-    var v = el.value;
-    el.value = '';
-    el.value = v;
-  }
-
-  // перерисовка списка без потери фокуса в поиске
-  function rerenderList() {
-    if (state.tab !== 'tournaments') { render(); return; }
-    var q = document.getElementById('q');
-    var sel = document.activeElement;
-    var wasSearch = q && sel === q;
-    var pos = wasSearch ? q.selectionStart : 0;
-    view.innerHTML = viewTournaments();
-    if (wasSearch) {
-      var nq = document.getElementById('q');
-      nq.focus();
-      try { nq.setSelectionRange(pos, pos); } catch (err) {}
-    }
-  }
-
   window.addEventListener('hashchange', function () { render(); });
 
+  renderDataBar();
   render();
 })();
 </script>
