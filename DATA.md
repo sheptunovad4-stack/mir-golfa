@@ -1,6 +1,6 @@
 # Данные приложения
 
-Источник: `Golf_Sources_and_Clubs_CIS_2026.xlsx` (выгрузка от 20 ноября 2026).
+Источник реестра: `Golf_Sources_and_Clubs_CIS_2026.xlsx` (выгрузка от 20 ноября 2026).
 Копия файла лежит в `data/source/`, чтобы было видно происхождение данных.
 
 Всё перенесено без сокращений: 4 листа → 4 набора данных.
@@ -11,6 +11,43 @@
 | Клубы СНГ | 85 | `clubs` |
 | Архив (исключённые) | 14 | `archive` |
 | Сводка | — | `meta` |
+
+## Турниры из календарей
+
+Отдельно от таблицы разобраны официальные календари. Всего **51 турнир**,
+снимок от 23 ноября 2026:
+
+| Источник | Страница | Турниров |
+|---|---|---|
+| АГР (Россия) | `rusgolf.ru/ru/contests/tournament-calendar` | 37 |
+| БАГ (Беларусь) | `ingolf.by/turniryi/kalendarnyij-plan-na-2026` | 9 |
+| ГОЛЬФ.РУ | `golf.ru/when_play/lubitelskie/` | 5 |
+
+У каждого турнира: название, вид спорта, даты как на сайте, `start`/`end` в ISO,
+место, регион, страна, уровень, организатор, ссылка на первоисточник,
+`origin: "parsed"` и `extractedAt` (дата снимка).
+
+Статус («предстоит», «идёт», «завершён») в приложении считается из дат, а не
+хранится в данных: так он не устаревает.
+
+### Как это разобрано
+
+- **АГР** — HTML-таблица по месяцам, строки `<tr class="vs|rs|akr">`.
+  Даты вида «8-11 апреля», «31 мая – 6 июня» переводятся в ISO с годом 2026.
+- **ingolf.by** — карточки `<article data-start data-end>` с заголовком,
+  подзаголовком и местом; даты уже в ISO прямо в разметке.
+- **golf.ru** — список `<dt>`/`<dd>`: дата `дд.мм.гггг` и ссылка на карточку
+  турнира. Показывает только ближайшие события, архива на сайте нет.
+
+### Что не получилось
+
+- **fedgolf.kz** (Казахстан) — `robots.txt` не отдаётся, а страница
+  `/tournaments` содержит календарь **2025** года; календаря 2026 на сайте нет.
+- **mos-golf.ru** (Москва) — новостной сайт: турниры анонсируются постами,
+  единого календаря нет, разбирать новости — значит гадать.
+- **golf.mossport.ru** — расписание занятий секции, не турниры.
+- Победители, счёт и протоколы не собирались: без официального протокола
+  их добавлять нельзя.
 
 ## Что ещё добавлено
 
@@ -33,12 +70,14 @@
 
 ```js
 window.GOLF = {
-  meta:    { exported, checked, sources, clubs, archive, checks },
-  events:  [ ... ],   // турниры (демо-календарь)
-  sources: [ { n, name, country, region, type, roles, owner, status, channel, url, note } ],
-  clubs:   [ { n, country, region, name, type, site, telegram, social, channelStatus, note } ],
-  archive: [ { n, name, url, category, reason } ],
-  checks:  [ { url, code, final, title, desc } ]
+  meta:        { exported, checked, tournamentsExtracted, sources, clubs, archive, checks, tournaments },
+  tournaments: [ { id, name, sport, dates, start, end, location, region, country,
+                   level, code, organizer, note, source, sourceName, origin, extractedAt } ],
+  events:      [],   // оставлено пустым: демо-календарь убран
+  sources:     [ { n, name, country, region, type, roles, owner, status, channel, url, note } ],
+  clubs:       [ { n, country, region, name, type, site, telegram, social, channelStatus, note } ],
+  archive:     [ { n, name, url, category, reason } ],
+  checks:      [ { url, code, final, title, desc } ]
 };
 ```
 
@@ -47,7 +86,6 @@ window.GOLF = {
 
 ## Что осталось за кадром
 
-В таблице есть тип источника и роли («календарь», «результаты», «регистрация»),
-но нет самих турниров и результатов. Автоматического разбора страниц пока нет:
-он требует отдельных адаптеров под каждый сайт и проверки `robots.txt`.
-До этого данные в приложении остаются демонстрационными, с ручной сверкой.
+Победители, счёт, стартовые листы и регламенты. Для них нужны отдельные
+адаптеры и подтверждение официальным протоколом — иначе это будут выдуманные
+данные.
