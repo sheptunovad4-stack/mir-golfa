@@ -185,6 +185,7 @@
 </div>
 
 <script src="data/golf-data.js"></script>
+<script src="data/tournament-results-2026.js"></script>
 <script>
 (function () {
   'use strict';
@@ -469,6 +470,31 @@
     return html + '</a>';
   }
 
+  function resultPanel(e) {
+    var result = (window.GOLF_RESULTS || {})[e.id];
+    if (!result) {
+      var ended = parseISO(e.end) < TODAY;
+      return '<div class="card"><h4>Результаты турнира</h4><p>' +
+        (ended ? 'Результаты пока не найдены в проверенных официальных источниках.' : 'Результаты появятся после завершения турнира и публикации протокола.') +
+        '</p><p class="small" style="margin-top:8px">Неподтверждённые победители и счёт не публикуются.</p></div>';
+    }
+    var html = '<div class="card"><h4>Результаты турнира</h4>' +
+      '<p class="small">Сводка по опубликованным данным · ' + esc(result.source || 'источник') + '</p>' +
+      (result.note ? '<p style="margin-top:8px">' + esc(result.note) + '</p>' : '');
+    (result.categories || []).forEach(function (category) {
+      html += '<h4 style="margin-top:14px">' + esc(category.name) + '</h4>';
+      if (category.places && category.places.length) {
+        html += '<div class="result-list">';
+        category.places.forEach(function (p) {
+          html += '<div class="kv"><span><b>' + esc(p[0]) + '</b> · ' + esc(p[1]) + '</span><span>' + esc(p[2] || '') + '</span></div>';
+        });
+        html += '</div>';
+      }
+    });
+    html += '<a class="btn" style="margin-top:12px" href="' + esc(result.url) + '" target="_blank" rel="noopener">Официальный протокол / источник ↗</a></div>';
+    return html;
+  }
+
   function viewEvent(e) {
     var status = autoStatus(e);
     var conflict = statusConflict(e);
@@ -512,6 +538,8 @@
       '</div>' +
       '<a class="btn" href="' + esc(e.source) + '" target="_blank" rel="noopener">Открыть первоисточник ↗</a>' +
       '<button class="btn ghost" data-fav="' + esc(e.id) + '">' + (isSaved ? '★ В избранном' : '☆ Добавить в избранное') + '</button>';
+
+    html += resultPanel(e);
 
     return html;
   }
