@@ -193,15 +193,12 @@
      Данные приходят из data/golf-data.js (window.GOLF).
      Внутри — выгрузка Golf_Sources_and_Clubs_CIS_2026.xlsx:
      183 источника, 85 клубов, 14 записей архива + проверка сайтов.
+     Плюс турниры, разобранные с трёх официальных календарей.
      ══════════════════════════════════════════════════════════ */
 
   var G = window.GOLF || null;
 
-  var EVENTS = (G && G.events) || [
-    { id: 'ru-mini-2026', name: 'Кубок России по мини-гольфу', sport: 'Мини-гольф', dates: '2–9 ноября 2026', start: '2026-11-02', end: '2026-11-09', location: 'Санкт-Петербург · СШОР «Невские звёзды»', region: 'Санкт-Петербург', country: 'Россия', level: 'Всероссийский', declaredStatus: 'Предстоит', organizer: 'Ассоциация гольфа России', source: 'https://rusgolf.ru/ru/contests/tournament-calendar', note: 'Дата и площадка указаны в календаре АГР; перед поездкой проверьте актуальный регламент у организатора.' },
-    { id: 'kr-krai-2026', name: 'Чемпионат Краснодарского края по гольфу', sport: 'Гольф', dates: '5–8 ноября 2026', start: '2026-11-05', end: '2026-11-08', location: 'Краснодарский край · «Геленджик гольф резорт»', region: 'Краснодарский край', country: 'Россия', level: 'Региональный', declaredStatus: 'Предстоит', organizer: 'Краснодарская краевая федерация развития гольфа', source: 'https://rusgolf.ru/ru/contests/tournament-calendar', note: 'Информация взята из календаря АГР; условия участия могут уточняться организатором.' },
-    { id: 'belarus-open-2026', name: 'XX Belarus Golf Open Cup', sport: 'Гольф', dates: '19–20 сентября 2026', start: '2026-09-19', end: '2026-09-20', location: 'Беларусь · Минск', region: 'Беларусь', country: 'Беларусь', level: 'Международный', declaredStatus: 'Завершён', organizer: 'Белорусская ассоциация гольфа', source: 'https://ingolf.by/turniryi/kalendarnyij-plan-na-2026', note: 'Победитель намеренно не указан: его нужно подтвердить официальным протоколом.' }
-  ];
+  var EVENTS = (G && G.tournaments) || [];
 
   var SOURCES = (G && G.sources) || [];
   var CLUBS = (G && G.clubs) || [];
@@ -209,6 +206,7 @@
   var CHECKS = (G && G.checks) || [];
   var META = (G && G.meta) || {};
   var DATA_UPDATED = META.exported || null;
+  var TOUR_EXTRACTED = META.tournamentsExtracted || null;
 
   var TYPE_LABEL = {
     club_site: 'сайт клуба', social_media: 'соцсеть', regional_sports_portal: 'региональный портал',
@@ -230,7 +228,7 @@
   var state = {
     tab: 'tournaments',
     eventId: null,
-    q: '', sport: 'Все', region: 'Все', level: 'Все', onlySaved: false, sort: 'date',
+    q: '', sport: 'Все', source: 'Все', level: 'Все', onlySaved: false, upcomingOnly: false, sort: 'date',
     clubQ: '', clubCountry: 'Все',
     sourceQ: '', sourceCountry: 'Все', sourceType: 'Все',
     checkQ: '', checkState: 'Все',
@@ -280,7 +278,10 @@
     return 'Идёт сейчас';
   }
 
-  function statusConflict(e) { return e.declaredStatus !== autoStatus(e); }
+  function statusConflict(e) {
+    if (!e.declaredStatus) return false;
+    return e.declaredStatus !== autoStatus(e);
+  }
 
   function plural(n, one, few, many) {
     var m10 = n % 10, m100 = n % 100;
@@ -354,30 +355,38 @@
     var q = state.q.trim().toLowerCase();
     var rows = EVENTS.filter(function (e) {
       if (state.sport !== 'Все' && e.sport !== state.sport) return false;
-      if (state.region !== 'Все' && e.region !== state.region) return false;
+      if (state.source !== 'Все' && sourceShort(e) !== state.source) return false;
       if (state.level !== 'Все' && e.level !== state.level) return false;
+      if (state.upcomingOnly && autoStatus(e) === 'Завершён') return false;
       if (state.onlySaved && saved.indexOf(e.id) === -1) return false;
       if (!q) return true;
-      return [e.name, e.location, e.region, e.country, e.organizer, e.level, e.sport, e.dates, e.start, e.end]
+      return [e.name, e.location, e.region, e.country, e.organizer, e.level, e.sport, e.dates, e.start, e.end, e.sourceName]
         .join(' ').toLowerCase().indexOf(q) !== -1;
     });
     rows.sort(function (a, b) {
       if (state.sort === 'name') return a.name.localeCompare(b.name, 'ru');
+      if (state.sort === 'source') return String(a.sourceName).localeCompare(String(b.sourceName), 'ru');
       if (a.start === b.start) return 0;
       return a.start < b.start ? -1 : 1;
     });
     return rows;
   }
 
+  function sourceShort(e) {
+    return String(e.sourceName || 'источник').split(' · ')[0];
+  }
+
   function viewTournaments() {
     var rows = filteredEvents();
     var upcoming = EVENTS.filter(function (e) { return autoStatus(e) === 'Предстоит'; }).length;
     var live = EVENTS.filter(function (e) { return autoStatus(e) === 'Идёт сейчас'; }).length;
+    var srcList = unique(EVENTS.map(sourceShort));
 
     var html = '<section class="hero">' +
-      '<div class="label">ОБЗОР КАЛЕНДАРЯ</div>' +
+      '<div class="label">КАЛЕНДАРЬ 2026</div>' +
       '<h2>Следи за игрой.<br>Не пропускай старт.</h2>' +
-      '<p>Демо-версия: турниры сверены с официальными источниками вручную, автоматический сбор ещё не включён.</p>' +
+      '<p>' + EVENTS.length + ' ' + plural(EVENTS.length, 'турнир', 'турнира', 'турниров') + ' разобраны с официальных календарей: ' +
+        'АГР (Россия), Белорусская ассоциация гольфа и ГОЛЬФ.РУ. Данные сняты ' + (TOUR_EXTRACTED ? esc(TOUR_EXTRACTED) : 'вручную') + '.</p>' +
       '<div class="stats">' +
         '<div class="stat"><b>' + EVENTS.length + '</b><span>' + plural(EVENTS.length, 'турнир', 'турнира', 'турниров') + '</span></div>' +
         '<div class="stat"><b>' + (upcoming + live) + '</b><span>предстоит и идёт</span></div>' +
@@ -386,7 +395,7 @@
       '</div>' +
     '</section>';
 
-    html += '<input class="search" id="q" type="search" value="' + esc(state.q) + '" placeholder="Турнир, город, организатор, дата…" aria-label="Поиск по турнирам">';
+    html += '<input class="search" id="q" type="search" value="' + esc(state.q) + '" placeholder="Турнир, место, организатор, дата…" aria-label="Поиск по турнирам">';
 
     html += '<div class="chips" role="group" aria-label="Вид спорта">';
     ['Все', 'Гольф', 'Мини-гольф'].forEach(function (f) {
@@ -395,13 +404,21 @@
     html += '<button class="chip" data-saved="1" aria-pressed="' + state.onlySaved + '">★ Избранное</button>';
     html += '</div>';
 
+    html += '<div class="chips" role="group" aria-label="Источник">';
+    html += '<button class="chip" data-source="Все" aria-pressed="' + (state.source === 'Все') + '">Все источники</button>';
+    srcList.forEach(function (s) {
+      html += '<button class="chip" data-source="' + esc(s) + '" aria-pressed="' + (state.source === s) + '">' + esc(s) + '</button>';
+    });
+    html += '</div>';
+
     html += '<div class="filters">' +
-      '<select id="region" aria-label="Регион">' + options(unique(EVENTS.map(function (e) { return e.region; })), state.region, 'Все регионы') + '</select>' +
       '<select id="level" aria-label="Уровень">' + options(unique(EVENTS.map(function (e) { return e.level; })), state.level, 'Все уровни') + '</select>' +
-      '<select id="sort" aria-label="Сортировка" style="grid-column: span 2">' +
-        '<option value="date"' + (state.sort === 'date' ? ' selected' : '') + '>Сортировка: по дате</option>' +
-        '<option value="name"' + (state.sort === 'name' ? ' selected' : '') + '>Сортировка: по названию</option>' +
+      '<select id="sort" aria-label="Сортировка">' +
+        '<option value="date"' + (state.sort === 'date' ? ' selected' : '') + '>По дате</option>' +
+        '<option value="name"' + (state.sort === 'name' ? ' selected' : '') + '>По названию</option>' +
+        '<option value="source"' + (state.sort === 'source' ? ' selected' : '') + '>По источнику</option>' +
       '</select>' +
+      '<button class="chip" data-upcoming="1" aria-pressed="' + state.upcomingOnly + '" style="grid-column: span 2">Только предстоящие</button>' +
     '</div>';
 
     html += '<div class="row between" style="margin-bottom:10px">' +
@@ -409,14 +426,16 @@
       '<span class="muted small">' + rows.length + ' ' + plural(rows.length, 'событие', 'события', 'событий') + '</span>' +
     '</div>';
 
-    if (!rows.length) {
+    if (!EVENTS.length) {
+      html += '<div class="empty"><b>Турниры не загружены</b>Файл data/golf-data.js не подключён или пуст.</div>';
+    } else if (!rows.length) {
       html += '<div class="empty"><b>Ничего не нашлось</b>Попробуйте изменить запрос или сбросить фильтры.<br><br>' +
         '<button class="chip" data-reset="1">Сбросить фильтры</button></div>';
     } else {
       rows.forEach(function (e) { html += eventCard(e); });
     }
 
-    html += '<p class="foot">Демо не является гарантией актуальности. Даты и статусы нужно перепроверять у организаторов перед регистрацией или поездкой.</p>';
+    html += '<p class="foot">Даты и статусы взяты с календарей организаторов и считаются по датам. Перед регистрацией или поездкой проверьте регламент у организатора: он может изменить сроки.</p>';
     return html;
   }
 
@@ -435,14 +454,14 @@
     var html = '<a class="card event" href="#/event/' + esc(e.id) + '">' +
       '<div class="row between">' +
         '<span class="pill">' + esc(e.sport) + '</span>' +
-        '<span class="muted small">' + esc(e.level) + star + '</span>' +
+        '<span class="muted small">' + esc(sourceShort(e)) + star + '</span>' +
       '</div>' +
       '<h3>' + esc(e.name) + '</h3>' +
       '<div class="when">◷ ' + esc(e.dates) + '</div>' +
       '<div class="where">⌖ ' + esc(e.location) + '</div>' +
       '<div class="row between">' +
         '<span class="pill ' + (conflict ? 'warn' : 'dark') + '">' + esc(status) + '</span>' +
-        '<span class="more">Подробнее ↗</span>' +
+        '<span class="muted small">' + esc(e.level) + '</span>' +
       '</div>';
     if (conflict) {
       html += '<div class="note-warn">Статус в карточке устарел: указано «' + esc(e.declaredStatus) + '», по датам — «' + esc(status) + '». Нужна сверка с источником.</div>';
@@ -465,7 +484,7 @@
 
     var html = '<a class="back" href="#/tournaments">← Все турниры</a>' +
       '<div class="detail-hero">' +
-        '<span class="pill dark" style="background:rgba(255,255,255,.16)">' + esc(e.sport) + ' · ' + esc(e.level) + '</span>' +
+        '<span class="pill dark" style="background:rgba(255,255,255,.16)">' + esc(e.sport) + (e.level ? ' · ' + esc(e.level) : '') + '</span>' +
         '<h2>' + esc(e.name) + '</h2>' +
         '<div class="when">◷ ' + esc(e.dates) + '</div>' +
         '<div class="where">⌖ ' + esc(e.location) + '</div>' +
@@ -473,10 +492,11 @@
       '<div class="card">' +
         '<h4>Статус и организатор</h4>' +
         '<div class="kv"><span>По датам</span><span>' + esc(status) + '</span></div>' +
-        '<div class="kv"><span>В карточке</span><span>' + esc(e.declaredStatus) + '</span></div>' +
         '<div class="kv"><span>Отсчёт</span><span>' + esc(human) + '</span></div>' +
         '<div class="kv"><span>Организатор</span><span>' + esc(e.organizer || 'уточняется') + '</span></div>' +
-        '<div class="kv"><span>Регион</span><span>' + esc(e.region) + '</span></div>' +
+        '<div class="kv"><span>Регион</span><span>' + esc(e.region || 'не указан') + '</span></div>' +
+        (e.code ? '<div class="kv"><span>Код в календаре</span><span>' + esc(e.code) + '</span></div>' : '') +
+        '<div class="kv"><span>Сроки</span><span>' + esc(e.start) + ' → ' + esc(e.end) + '</span></div>' +
       '</div>';
 
     if (conflict) {
@@ -484,10 +504,11 @@
     }
 
     html += '<div class="card">' +
-        '<h4>Важная заметка</h4>' +
-        '<p>' + esc(e.note) + '</p>' +
-        '<p class="small" style="margin-top:10px">Победитель, счёт и требования не добавляются без подтверждённого протокола.</p>' +
-        '<p class="small" style="margin-top:6px">Дата выгрузки данных: ' + (DATA_UPDATED ? esc(DATA_UPDATED) : 'не указана') + '</p>' +
+        '<h4>Откуда данные</h4>' +
+        '<p>' + esc(e.sourceName || 'первоисточник') + '</p>' +
+        (e.note ? '<p style="margin-top:8px">' + esc(e.note) + '</p>' : '') +
+        '<p class="small" style="margin-top:10px">' + (e.origin === 'parsed' ? 'Разобрано с страницы календаря' + (e.extractedAt ? ', снимок ' + esc(e.extractedAt) : '') : 'Внесено вручную') + '.</p>' +
+        '<p class="small" style="margin-top:6px">Победитель, счёт и условия участия не добавляются без подтверждённого протокола.</p>' +
       '</div>' +
       '<a class="btn" href="' + esc(e.source) + '" target="_blank" rel="noopener">Открыть первоисточник ↗</a>' +
       '<button class="btn ghost" data-fav="' + esc(e.id) + '">' + (isSaved ? '★ В избранном' : '☆ Добавить в избранное') + '</button>';
@@ -733,6 +754,9 @@
 
   function viewAnalytics() {
     var conflicts = EVENTS.filter(statusConflict).length;
+    var byTourSource = countBy(EVENTS, function (e) { return sourceShort(e); });
+    var byTourLevel = countBy(EVENTS, 'level');
+    var byTourSport = countBy(EVENTS, 'sport');
     var byStatus = countBy(SOURCES, 'status');
     var byType = countBy(SOURCES, 'type');
     var byCountry = countBy(SOURCES, 'country');
@@ -750,8 +774,14 @@
       '<div class="kv"><span>Клубов с Telegram</span><span>' + withTelegram + '</span></div>' +
       '<div class="kv"><span>Клубов без сайта</span><span>' + noSite + '</span></div>' +
       '<div class="kv"><span>Исключено в архив</span><span>' + ARCHIVE.length + '</span></div>' +
+      '<div class="kv"><span>Турниров в календаре</span><span>' + EVENTS.length + '</span></div>' +
       '<div class="kv"><span>Турниров с расхождением статуса</span><span>' + conflicts + '</span></div>' +
     '</div>';
+
+    html += '<div class="card"><h4>Турниры по источникам</h4>' + bars(byTourSource) +
+      '<p class="small" style="margin-top:10px">Разобраны календари: АГР, Белорусская ассоциация гольфа, ГОЛЬФ.РУ. Снимок от ' + (TOUR_EXTRACTED ? esc(TOUR_EXTRACTED) : 'не указан') + '.</p></div>';
+    html += '<div class="card"><h4>Турниры по уровню</h4>' + bars(byTourLevel) + '</div>';
+    html += '<div class="card"><h4>Турниры по виду спорта</h4>' + bars(byTourSport) + '</div>';
 
     html += '<div class="card"><h4>Доступность сайтов</h4>' + bars(checkStates) +
       '<p class="small" style="margin-top:10px">Проверка главных страниц: ' + CHECKS.length + ' адресов. Ошибки и отсутствие ответа — повод заменить источник, а не удалять данные.</p></div>';
@@ -837,6 +867,7 @@
   function renderDataBar() {
     var parts = [];
     if (DATA_UPDATED) parts.push('выгрузка ' + DATA_UPDATED);
+    if (EVENTS.length) parts.push(EVENTS.length + ' ' + plural(EVENTS.length, 'турнир', 'турнира', 'турниров'));
     if (SOURCES.length) parts.push(SOURCES.length + ' ' + plural(SOURCES.length, 'источник', 'источника', 'источников'));
     if (CLUBS.length) parts.push(CLUBS.length + ' ' + plural(CLUBS.length, 'клуб', 'клуба', 'клубов'));
     if (CHECKS.length) parts.push(CHECKS.length + ' ' + plural(CHECKS.length, 'проверенный адрес', 'проверенных адреса', 'проверенных адресов'));
@@ -877,20 +908,21 @@
 
   view.addEventListener('change', function (e) {
     var id = e.target.id;
-    if (id === 'region') { state.region = e.target.value; rerenderCurrent(); }
-    else if (id === 'level') { state.level = e.target.value; rerenderCurrent(); }
+    if (id === 'level') { state.level = e.target.value; rerenderCurrent(); }
     else if (id === 'sort') { state.sort = e.target.value; rerenderCurrent(); }
     else if (id === 'stype') { state.sourceType = e.target.value; resetLimits('sources'); rerenderCurrent(); }
   });
 
   view.addEventListener('click', function (e) {
-    var t = e.target.closest('[data-sport],[data-saved],[data-reset],[data-country],[data-club-country],[data-check],[data-more],[data-fav]');
+    var t = e.target.closest('[data-sport],[data-source],[data-saved],[data-upcoming],[data-reset],[data-country],[data-club-country],[data-check],[data-more],[data-fav]');
     if (!t) return;
 
     if (t.dataset.sport !== undefined) { state.sport = t.dataset.sport; rerenderCurrent(); }
+    else if (t.dataset.source !== undefined) { state.source = t.dataset.source; rerenderCurrent(); }
     else if (t.dataset.saved !== undefined) { state.onlySaved = !state.onlySaved; rerenderCurrent(); }
+    else if (t.dataset.upcoming !== undefined) { state.upcomingOnly = !state.upcomingOnly; rerenderCurrent(); }
     else if (t.dataset.reset !== undefined) {
-      state.q = ''; state.sport = 'Все'; state.region = 'Все'; state.level = 'Все'; state.onlySaved = false;
+      state.q = ''; state.sport = 'Все'; state.source = 'Все'; state.level = 'Все'; state.onlySaved = false; state.upcomingOnly = false;
       rerenderCurrent();
     }
     else if (t.dataset.country !== undefined) { state.sourceCountry = t.dataset.country; resetLimits('sources'); rerenderCurrent(); }
