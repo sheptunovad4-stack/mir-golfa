@@ -1,0 +1,96 @@
+{
+  "updatedAt": "2026-11-23",
+  "description": "Извлечённые сведения из сайтов, перечисленных в реестре проекта. Сохранены проверяемые факты; наличие URL не означает полной выгрузки сайта.",
+  "coverage": {
+    "sitesInRegistry": 183,
+    "sitePagesReviewed": 10,
+    "newCalendarEvents": 18,
+    "newArchiveTournaments": 2,
+    "notes": "Проверены страницы АГР, Livescoring, Белорусской и Казахстанской федераций, UZGolf."
+  },
+  "sources": [
+    {
+      "name": "АГР — чемпионат России 2024",
+      "url": "https://rusgolf.ru/ru/contests/chempionat-rossii-2024",
+      "country": "Россия",
+      "type": "Официальная федерация",
+      "extracted": "Даты, место, пьедестал мужчин и женщин, командный зачёт."
+    },
+    {
+      "name": "АГР — чемпионат России 2025",
+      "url": "https://rusgolf.ru/ru/contests/chempionat-rossii-lichnyj",
+      "country": "Россия",
+      "type": "Официальная федерация",
+      "extracted": "Найдены ссылки на индивидуальные и командные итоговые протоколы."
+    },
+    {
+      "name": "АГР — чемпионат России 2026",
+      "url": "https://rusgolf.ru/ru/contests/chempionat-rossii-lichnyj-2026",
+      "country": "Россия",
+      "type": "Официальная федерация",
+      "extracted": "Опубликованы итоговые протоколы мужчин, женщин и командных зачётов."
+    },
+    {
+      "name": "Livescoring — архив",
+      "url": "https://livescoring.ru/history/",
+      "country": "Россия / СНГ",
+      "type": "Агрегатор результатов",
+      "extracted": "Архив турниров 2006–2026; 52 турнира за 2026, 52 за 2025, 40 за 2024, 30 за 2023, 12 за 2022."
+    },
+    {
+      "name": "Livescoring — EGL",
+      "url": "https://livescoring.ru/clients/26.htm",
+      "country": "Россия",
+      "type": "Серия турниров",
+      "extracted": "Добавлены 9 датированных этапов EGL 2026. Источник заявляет 10 этапов; десятый не виден в извлечённом списке."
+    },
+    {
+      "name": "Белорусская ассоциация гольфа — календарь 2026",
+      "url": "https://ingolf.by/turniryi/kalendarnyij-plan-na-2026",
+      "country": "Беларусь",
+      "type": "Официальный календарь",
+      "extracted": "Добавлены все 9 мероприятий: гольф и мини-гольф."
+    },
+    {
+      "name": "Белорусская ассоциация гольфа — Silk Road",
+      "url": "https://ingolf.by/novosti/20260602-85",
+      "country": "Беларусь / СНГ",
+      "type": "Итоги турнира",
+      "extracted": "Командный рейтинг Казахстан, Россия, Узбекистан, Беларусь, Узбекистан-2."
+    },
+    {
+      "name": "Казахстанская федерация — Silk Road / Кубок ШОС",
+      "url": "https://fedgolf.kz/ru/tpost/vf0049eat1-v-almati-zavershilis-mezhdunarodnii-turn",
+      "country": "Казахстан",
+      "type": "Официальные итоги",
+      "extracted": "Подтверждены первые три команды Открытого кубка ШОС."
+    },
+    {
+      "name": "UZGolf — события 2024",
+      "url": "https://uzgolf.uz/en/events-en/",
+      "country": "Узбекистан",
+      "type": "Официальный архив",
+      "extracted": "Обнаружены TGA Final Stage, Tashkent League Individual Standings, TGA 7th Stage, Uzbekistan Open 2024; таблицы Results ещё не извлечены."
+    },
+    {
+      "name": "UZGolf — архив турниров",
+      "url": "https://uzgolf.uz/tournaments/",
+      "country": "Узбекистан",
+      "type": "Официальный архив",
+      "extracted": "Обнаружены Uzbekistan Boys/Girls Open U16 WAGR, Uzbekistan Junior Open WAGR, TGA, ADM Global Golf Tour."
+    },
+    {
+      "name": "Лига Гольфа — результаты 2026",
+      "url": "https://gl.livescoring.ru/2026/",
+      "country": "Россия / Беларусь",
+      "type": "Турнирная платформа",
+      "extracted": "Итоговая таблица 9 команд и индивидуальные спецзачёты."
+    }
+  ],
+  "limits": [
+    "Клубные сайты пока не выгружены полностью: поля, тарифы, контакты и клубные календари требуют отдельного прохода.",
+    "Instagram, Telegram и VK могут требовать авторизацию.",
+    "Если найден только календарь, результаты не выдумывались.",
+    "Мини-гольф отмечен отдельно от большого гольфа."
+  ]
+}
