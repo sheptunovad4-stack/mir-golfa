@@ -765,6 +765,140 @@
       "source": "https://gl.livescoring.ru/2026/final/",
       "sourceType": "Livescoring.ru · онлайн-табло",
       "verification": "Внесены итоговые места и итоговые баллы большого финала; малый финал не включён."
+    },
+    {
+      "id": "silk-road-golf-championship-2026",
+      "name": "Silk Road Golf Championship 2026 / Открытый кубок ШОС",
+      "year": 2026,
+      "startDate": "2026-05-28",
+      "endDate": "2026-05-30",
+      "venue": "Nurtau Golf Club, Алматы",
+      "country": "Казахстан",
+      "status": "Завершён",
+      "resultCoverage": "partial",
+      "results": [
+        {
+          "category": "Silk Road Golf Championship · командный зачёт",
+          "place": 1,
+          "player": "Казахстан",
+          "score": "1194 удара (+42)"
+        },
+        {
+          "category": "Silk Road Golf Championship · командный зачёт",
+          "place": 2,
+          "player": "Россия",
+          "score": "1246 ударов (+94)"
+        },
+        {
+          "category": "Silk Road Golf Championship · командный зачёт",
+          "place": 3,
+          "player": "Узбекистан",
+          "score": "1282 удара (+130)"
+        },
+        {
+          "category": "Silk Road Golf Championship · командный зачёт",
+          "place": 4,
+          "player": "Беларусь",
+          "score": "1384 удара (+232)"
+        },
+        {
+          "category": "Silk Road Golf Championship · командный зачёт",
+          "place": 5,
+          "player": "Узбекистан 2",
+          "score": "1392 удара (+240)"
+        },
+        {
+          "category": "Открытый кубок ШОС",
+          "place": 1,
+          "player": "Казахстан",
+          "score": "Командный победитель"
+        },
+        {
+          "category": "Открытый кубок ШОС",
+          "place": 2,
+          "player": "Россия",
+          "score": "Командное место"
+        },
+        {
+          "category": "Открытый кубок ШОС",
+          "place": 3,
+          "player": "Узбекистан",
+          "score": "Командное место"
+        }
+      ],
+      "source": "https://ingolf.by/novosti/20260602-85",
+      "sourceType": "Белорусская ассоциация гольфа; подтверждение — федерация Казахстана",
+      "verification": "Итоговая командная таблица подтверждена; индивидуальные протоколы не добавлены."
+    },
+    {
+      "id": "russia-championship-2024",
+      "name": "XXXIII Чемпионат России по гольфу 2024",
+      "year": 2024,
+      "startDate": "2024-07-22",
+      "endDate": "2024-07-28",
+      "venue": "Forest Hills, Московская область",
+      "country": "Россия",
+      "status": "Завершён",
+      "resultCoverage": "partial",
+      "results": [
+        {
+          "category": "Мужчины",
+          "place": 1,
+          "player": "Егор Ерошенко",
+          "score": "271 удар · −17"
+        },
+        {
+          "category": "Мужчины",
+          "place": 2,
+          "player": "Сергей Миронов",
+          "score": "276 ударов"
+        },
+        {
+          "category": "Мужчины",
+          "place": 3,
+          "player": "Алексей Карасев",
+          "score": "286 ударов"
+        },
+        {
+          "category": "Женщины",
+          "place": 1,
+          "player": "Екатерина Прохорова",
+          "score": "278 ударов · −10"
+        },
+        {
+          "category": "Женщины",
+          "place": 2,
+          "player": "Алиса Хохлова",
+          "score": "284 удара"
+        },
+        {
+          "category": "Женщины",
+          "place": 3,
+          "player": "Александра Чекалина",
+          "score": "Бронзовый призёр"
+        },
+        {
+          "category": "Командный зачёт субъектов РФ",
+          "place": 1,
+          "player": "Московская область",
+          "score": "99 очков"
+        },
+        {
+          "category": "Командный зачёт субъектов РФ",
+          "place": 2,
+          "player": "Москва",
+          "score": "78 очков"
+        },
+        {
+          "category": "Командный зачёт субъектов РФ",
+          "place": 3,
+          "player": "Санкт-Петербург",
+          "score": "21 очко"
+        }
+      ],
+      "source": "https://rusgolf.ru/ru/contests/chempionat-rossii-2024",
+      "sourceType": "АГР; итоговые протоколы PDF",
+      "verification": "Пьедестал подтверждён страницей АГР и PDF-протоколами; итоговый счёт Александры Чекалиной не включён."
     }
   ],
   "notes": [
