@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Мир Гольфа</title><style>
-*{box-sizing:border-box}body{margin:0;background:#F4F5EF;color:#182820;font-family:system-ui,-apple-system,Segoe UI,sans-serif}header{padding:24px 20px 18px}header small{letter-spacing:2px;color:#6C776F;font-weight:700}h1{font-size:30px;margin:6px 0}p{color:#6C776F;line-height:1.5}.hero{background:#174D38;color:white;border-radius:24px;padding:20px;margin:0 0 18px}.hero p{color:#e1e8df}.stats{display:flex;gap:10px}.stat{background:#ffffff18;padding:12px;border-radius:14px;flex:1}.stat b{font-size:23px;display:block}.wrap{padding:0 16px 100px}.card{background:white;border:1px solid #e0e5dc;border-radius:18px;padding:17px;margin:12px 0}.muted{color:#6C776F;font-size:13px}.tag{display:inline-block;background:#e8ede3;color:#174D38;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:700}.darktag{background:#174D38;color:white}input{width:100%;padding:13px;border-radius:14px;border:1px solid #e0e5dc;font-size:15px;margin:0 0 12px}button{border:0;background:#e8ede3;color:#174D38;padding:9px 13px;border-radius:20px;font-weight:700;cursor:pointer;margin:0 5px 8px 0}button.active{background:#174D38;color:white}nav{position:fixed;bottom:0;left:0;right:0;background:#f4f5eff2;border-top:1px solid #e0e5dc;display:flex;justify-content:space-around;padding:8px 4px 14px}nav button{background:transparent;border-radius:12px;font-size:12px;padding:8px 5px}nav button.active{background:transparent;color:#174D38}nav button span{display:block;font-size:20px}a{color:#174D38;font-weight:700}.result{border-top:1px solid #e0e5dc;padding-top:8px;margin-top:8px}.hidden{display:none}</style></head><body><header><small>GOLF • CIS</small><h1>Поле событий. ⛳</h1><p>Турниры, результаты и требования — в одном месте.</p></header><main class="wrap" id="main"></main><nav id="nav"></nav><script>
+*{box-sizing:border-box}body{margin:0;background:#F4F5EF;color:#182820;font-family:system-ui,-apple-system,Segoe UI,sans-serif}header{padding:24px 20px 18px}header small{letter-spacing:2px;color:#6C776F;font-weight:700}h1{font-size:30px;margin:6px 0}p{color:#6C776F;line-height:1.5}.hero{background:#174D38;color:white;border-radius:24px;padding:20px;margin:0 0 18px}.hero p{color:#e1e8df}.stats{display:flex;gap:10px}.stat{background:#ffffff18;padding:12px;border-radius:14px;flex:1}.stat b{font-size:23px;display:block}.wrap{padding:0 16px 100px}.card{background:white;border:1px solid #e0e5dc;border-radius:18px;padding:17px;margin:12px 0}.muted{color:#6C776F;font-size:13px}.tag{display:inline-block;background:#e8ede3;color:#174D38;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:700}.darktag{background:#174D38;color:white}input{width:100%;padding:13px;border-radius:14px;border:1px solid #e0e5dc;font-size:15px;margin:0 0 12px}button{border:0;background:#e8ede3;color:#174D38;padding:9px 13px;border-radius:20px;font-weight:700;cursor:pointer;margin:0 5px 8px 0}button.active{background:#174D38;color:white}nav{position:fixed;bottom:0;left:0;right:0;background:#f4f5eff2;border-top:1px solid #e0e5dc;display:flex;justify-content:space-around;padding:8px 4px 14px}nav button{background:transparent;border-radius:12px;font-size:12px;padding:8px 5px}nav button.active{background:transparent;color:#174D38}nav button span{display:block;font-size:20px}a{color:#174D38;font-weight:700}.result{border-top:1px solid #e0e5dc;padding-top:8px;margin-top:8px}.hidden{display:none}.level{float:right}.clickable{cursor:pointer}.clickable:focus-visible,button:focus-visible{outline:3px solid #7aa51f}.more{text-align:right;color:#174D38}.hero .tag{color:#174D38}summary{cursor:pointer;font-weight:700;color:#174D38;padding:6px 0}h4{margin:16px 0 6px}main{max-width:760px;margin:0 auto}header{max-width:760px;margin:0 auto}nav{padding-bottom:calc(8px + env(safe-area-inset-bottom))}nav button{margin:0;flex:1}</style></head><body><header><small>GOLF • CIS</small><h1>Поле событий. ⛳</h1><p>Турниры, результаты и требования — в одном месте.</p></header><main class="wrap" id="main"></main><nav id="nav"></nav><script>
 const golf={
-  "meta": {"exported": "20 ноября 2026", "checked": "22 ноября 2026", "tournamentsExtracted": "23 ноября 2026", "sources": 183, "clubs": 85, "archive": 14, "checks": 186, "tournaments": 69},
+  "meta": {"exported": "20 ноября 2026", "checked": "22 ноября 2026", "tournamentsExtracted": "23 ноября 2026", "sources": 183, "clubs": 85, "archive": 14, "checks": 186, "tournaments": 60},
   "tournaments": [
   {"id":"ru-agr-2026-04-08-1","name":"Чемпионат Южного федерального округа","sport":"Гольф","dates":"8-11 апреля","start":"2026-04-08","end":"2026-04-11","location":"Краснодарский край, ГК «Геленджик гольф резорт»","region":"Краснодарский край","country":"Россия","level":"Всероссийский","code":"ВС","organizer":"Федерация развития гольфа Краснодарского края","source":"https://rusgolf.ru/ru/contests/tournament-calendar","sourceName":"АГР · календарь 2026","origin":"parsed","extractedAt":"2026-11-23"},
   {"id":"ru-agr-2026-04-19-2","name":"ВС «Детско-юношеский турнир Геленджик»","sport":"Гольф","dates":"19-25 апреля","start":"2026-04-19","end":"2026-04-25","location":"Краснодарский край, ГК «Геленджик гольф резорт»","region":"Краснодарский край","country":"Россия","level":"Всероссийский","code":"ВС","organizer":"АГР, Минспорт России","source":"https://rusgolf.ru/ru/contests/tournament-calendar","sourceName":"АГР · календарь 2026","origin":"parsed","extractedAt":"2026-11-23"},
@@ -55,7 +55,16 @@ const golf={
   {"id":"ru-golfru-2026-12-19-2","name":"Новогодний турнир","sport":"Гольф","dates":"19 декабря 2026","start":"2026-12-19","end":"2026-12-19","location":"уточняется","region":"не указан","country":"Россия","level":"Любительский","organizer":"ГОЛЬФ.РУ","note":"Карточка турнира на golf.ru; место и условия уточняются у организатора.","source":"https://golf.ru/when_play/lubitelskie/novogodniy-turnir-26-p/","sourceName":"ГОЛЬФ.РУ · календарь","origin":"parsed","extractedAt":"2026-11-23"},
   {"id":"ru-golfru-2026-12-20-3","name":"Golf and Dine","sport":"Гольф","dates":"20 декабря 2026","start":"2026-12-20","end":"2026-12-20","location":"уточняется","region":"не указан","country":"Россия","level":"Любительский","organizer":"ГОЛЬФ.РУ","note":"Карточка турнира на golf.ru; место и условия уточняются у организатора.","source":"https://golf.ru/when_play/lubitelskie/golf-and-dine-20-dec/","sourceName":"ГОЛЬФ.РУ · календарь","origin":"parsed","extractedAt":"2026-11-23"},
   {"id":"ru-golfru-2026-12-30-4","name":"Новый Год в Целеево","sport":"Гольф","dates":"30 декабря 2026","start":"2026-12-30","end":"2026-12-30","location":"уточняется","region":"не указан","country":"Россия","level":"Корпоративный","organizer":"ГОЛЬФ.РУ","note":"Карточка турнира на golf.ru; место и условия уточняются у организатора.","source":"https://golf.ru/when_play/korporativnye/novyy-god-v-tseleevo/","sourceName":"ГОЛЬФ.РУ · календарь","origin":"parsed","extractedAt":"2026-11-23"},
-  {"id":"ru-golfru-2027-01-03-5","name":"Гольф-тур HIO на Хайнань","sport":"Гольф","dates":"3 января 2027","start":"2027-01-03","end":"2027-01-03","location":"уточняется","region":"не указан","country":"Россия","level":"Выездной","organizer":"ГОЛЬФ.РУ","note":"Карточка турнира на golf.ru; место и условия уточняются у организатора.","source":"https://golf.ru/when_play/vyezdnye/golf-tur-hio-na-khaynan/","sourceName":"ГОЛЬФ.РУ · календарь","origin":"parsed","extractedAt":"2026-11-23"}
+  {"id":"ru-golfru-2027-01-03-5","name":"Гольф-тур HIO на Хайнань","sport":"Гольф","dates":"3 января 2027","start":"2027-01-03","end":"2027-01-03","location":"уточняется","region":"не указан","country":"Россия","level":"Выездной","organizer":"ГОЛЬФ.РУ","note":"Карточка турнира на golf.ru; место и условия уточняются у организатора.","source":"https://golf.ru/when_play/vyezdnye/golf-tur-hio-na-khaynan/","sourceName":"ГОЛЬФ.РУ · календарь","origin":"parsed","extractedAt":"2026-11-23"},
+  {"id":"egl-2026-stage-1","name":"EGL-2026. Этап 1","sport":"Гольф","dates":"12 мая 2026","start":"2026-05-12","end":"2026-05-12","location":"Московская область, Москоу Кантри Клаб","region":"Московская обл.","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
+  {"id":"egl-2026-stage-2","name":"EGL-2026. Этап 2","sport":"Гольф","dates":"25–26 мая 2026","start":"2026-05-25","end":"2026-05-26","location":"Тверская область, Завидово","region":"Тверская обл.","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
+  {"id":"egl-2026-stage-3","name":"EGL-2026. Этап 3","sport":"Гольф","dates":"15–16 июня 2026","start":"2026-06-15","end":"2026-06-16","location":"Татарстан, Ак Барс","region":"Республика Татарстан","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
+  {"id":"egl-2026-stage-4","name":"EGL-2026. Этап 4","sport":"Гольф","dates":"22 июня 2026","start":"2026-06-22","end":"2026-06-22","location":"Московская область, Links National","region":"Московская обл.","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
+  {"id":"egl-2026-stage-5","name":"EGL-2026. Этап 5","sport":"Гольф","dates":"7 июля 2026","start":"2026-07-07","end":"2026-07-07","location":"Московская область, Москоу Кантри Клаб","region":"Московская обл.","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
+  {"id":"egl-2026-stage-6","name":"EGL-2026. Этап 6","sport":"Гольф","dates":"20–21 июля 2026","start":"2026-07-20","end":"2026-07-21","location":"Ленинградская область, Strawberry Fields","region":"Ленинградская обл.","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
+  {"id":"egl-2026-stage-7","name":"EGL-2026. Этап 7","sport":"Гольф","dates":"17 августа 2026","start":"2026-08-17","end":"2026-08-17","location":"Московская область, Целеево","region":"Московская обл.","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
+  {"id":"egl-2026-stage-8","name":"EGL-2026. Этап 8","sport":"Гольф","dates":"24–25 августа 2026","start":"2026-08-24","end":"2026-08-25","location":"Московская область, Москоу Кантри Клаб","region":"Московская обл.","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
+  {"id":"egl-2026-stage-9","name":"EGL-2026. Этап 9","sport":"Гольф","dates":"7 сентября 2026","start":"2026-09-07","end":"2026-09-07","location":"Московская область, Целеево","region":"Московская обл.","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."}
   ],
   "events": [],
   "sources": [
@@ -242,25 +251,6 @@ const golf={
   {"n":181,"name":"Федерация гольфа Ярославской области","country":"Россия","region":"Ярославская область","type":"regional_federation","roles":"календарь, регламенты, результаты","owner":"федерация","status":"страница проверена","channel":"Сайт","url":"https://yargolf.ru/","note":"Официальный сайт областной федерации; клуб «Коприно» в том же регионе."},
   {"n":182,"name":"UZGolf — события","country":"Узбекистан","region":"Национальный","type":"events_archive","roles":"календарь, результаты","owner":"федерация","status":"найдено в поиске","channel":"Сайт","url":"https://uzgolf.uz/en/events-en/","note":"Архив событий; архивные даты не считать текущими без подтверждения."},
   {"n":183,"name":"Tashkent Lakeside Golf Club (TLGC)","country":"Узбекистан","region":"Ташкент","type":"club_site","roles":"клубы, календарь","owner":"клуб","status":"найдено в поиске","channel":"Сайт","url":"https://tlgc.uz/","note":"Альтернативный домен клуба; проверить актуальность."}
-,
-  {"id":"egl-2026-stage-1","name":"EGL-2026. Этап 1","sport":"Гольф","dates":"12 мая 2026","start":"2026-05-12","end":"2026-05-12","location":"Московская область, Москоу Кантри Клаб","region":"Московская область, Москоу Кантри Клаб","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
-  {"id":"egl-2026-stage-2","name":"EGL-2026. Этап 2","sport":"Гольф","dates":"25–26 мая 2026","start":"2026-05-25","end":"2026-05-25","location":"Тверская область, Завидово","region":"Тверская область, Завидово","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
-  {"id":"egl-2026-stage-3","name":"EGL-2026. Этап 3","sport":"Гольф","dates":"15–16 июня 2026","start":"2026-06-15","end":"2026-06-15","location":"Татарстан, Ак Барс","region":"Татарстан, Ак Барс","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
-  {"id":"egl-2026-stage-4","name":"EGL-2026. Этап 4","sport":"Гольф","dates":"22 июня 2026","start":"2026-06-22","end":"2026-06-22","location":"Московская область, Links National","region":"Московская область, Links National","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
-  {"id":"egl-2026-stage-5","name":"EGL-2026. Этап 5","sport":"Гольф","dates":"7 июля 2026","start":"2026-07-07","end":"2026-07-07","location":"Московская область, Москоу Кантри Клаб","region":"Московская область, Москоу Кантри Клаб","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
-  {"id":"egl-2026-stage-6","name":"EGL-2026. Этап 6","sport":"Гольф","dates":"20–21 июля 2026","start":"2026-07-20","end":"2026-07-20","location":"Ленинградская область, Strawberry Fields","region":"Ленинградская область, Strawberry Fields","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
-  {"id":"egl-2026-stage-7","name":"EGL-2026. Этап 7","sport":"Гольф","dates":"17 августа 2026","start":"2026-08-17","end":"2026-08-17","location":"Московская область, Целеево","region":"Московская область, Целеево","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
-  {"id":"egl-2026-stage-8","name":"EGL-2026. Этап 8","sport":"Гольф","dates":"24–25 августа 2026","start":"2026-08-24","end":"2026-08-24","location":"Московская область, Москоу Кантри Клаб","region":"Московская область, Москоу Кантри Клаб","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
-  {"id":"egl-2026-stage-9","name":"EGL-2026. Этап 9","sport":"Гольф","dates":"7 сентября 2026","start":"2026-09-07","end":"2026-09-07","location":"Московская область, Целеево","region":"Московская область, Целеево","country":"Россия","level":"Серия","code":"","organizer":"Евразийская лига гольфа","source":"https://livescoring.ru/clients/26.htm","sourceName":"Евразийская лига гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Дата и площадка указаны на странице серии; протокол отдельно не извлечён."},
-  {"id":"belarus-2026-1","name":"Открытые республиканские соревнования «Весенний паттинг»","sport":"Мини-гольф","dates":"11 апреля 2026","start":"2026-04-11","end":"2026-04-11","location":"д. Высокое, Смолевичский район","region":"д. Высокое, Смолевичский район","country":"Беларусь","level":"Республиканский / международный","code":"","organizer":"Белорусская ассоциация гольфа","source":"https://ingolf.by/turniryi/kalendarnyij-plan-na-2026","sourceName":"Белорусская ассоциация гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Календарная запись; итоговый протокол не найден."},
-  {"id":"belarus-2026-2","name":"VI Весенний кубок Minsk Golf Club","sport":"Гольф","dates":"18–19 апреля 2026","start":"2026-04-18","end":"2026-04-18","location":"Минск, Беларусь","region":"Минск, Беларусь","country":"Беларусь","level":"Республиканский / международный","code":"","organizer":"Белорусская ассоциация гольфа","source":"https://ingolf.by/turniryi/kalendarnyij-plan-na-2026","sourceName":"Белорусская ассоциация гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Календарная запись; итоговый протокол не найден."},
-  {"id":"belarus-2026-3","name":"Чемпионат Беларуси","sport":"Мини-гольф","dates":"16 мая 2026","start":"2026-05-16","end":"2026-05-16","location":"Могилёв, Беларусь","region":"Могилёв, Беларусь","country":"Беларусь","level":"Республиканский / международный","code":"","organizer":"Белорусская ассоциация гольфа","source":"https://ingolf.by/turniryi/kalendarnyij-plan-na-2026","sourceName":"Белорусская ассоциация гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Календарная запись; итоговый протокол не найден."},
-  {"id":"belarus-2026-4","name":"Minsk Golf Invitational 2026","sport":"Гольф","dates":"22–23 мая 2026","start":"2026-05-22","end":"2026-05-22","location":"Минск, Беларусь","region":"Минск, Беларусь","country":"Беларусь","level":"Республиканский / международный","code":"","organizer":"Белорусская ассоциация гольфа","source":"https://ingolf.by/turniryi/kalendarnyij-plan-na-2026","sourceName":"Белорусская ассоциация гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Календарная запись; итоговый протокол не найден."},
-  {"id":"belarus-2026-5","name":"Слободка встречает гостей","sport":"Мини-гольф","dates":"1 августа 2026","start":"2026-08-01","end":"2026-08-01","location":"д. Слободка, Браславский район, Беларусь","region":"д. Слободка, Браславский район, Беларусь","country":"Беларусь","level":"Республиканский / международный","code":"","organizer":"Белорусская ассоциация гольфа","source":"https://ingolf.by/turniryi/kalendarnyij-plan-na-2026","sourceName":"Белорусская ассоциация гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Календарная запись; итоговый протокол не найден."},
-  {"id":"belarus-2026-6","name":"Time to Golf","sport":"Гольф","dates":"1 августа 2026","start":"2026-08-01","end":"2026-08-01","location":"Минск, Беларусь","region":"Минск, Беларусь","country":"Беларусь","level":"Республиканский / международный","code":"","organizer":"Белорусская ассоциация гольфа","source":"https://ingolf.by/turniryi/kalendarnyij-plan-na-2026","sourceName":"Белорусская ассоциация гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Календарная запись; итоговый протокол не найден."},
-  {"id":"belarus-2026-7","name":"Первенство Беларуси","sport":"Мини-гольф","dates":"12 сентября 2026","start":"2026-09-12","end":"2026-09-12","location":"Несвиж, Беларусь","region":"Несвиж, Беларусь","country":"Беларусь","level":"Республиканский / международный","code":"","organizer":"Белорусская ассоциация гольфа","source":"https://ingolf.by/turniryi/kalendarnyij-plan-na-2026","sourceName":"Белорусская ассоциация гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Календарная запись; итоговый протокол не найден."},
-  {"id":"belarus-2026-8","name":"XX Belarus Golf Open Cup","sport":"Гольф","dates":"19–20 сентября 2026","start":"2026-09-19","end":"2026-09-19","location":"Минск, Беларусь","region":"Минск, Беларусь","country":"Беларусь","level":"Республиканский / международный","code":"","organizer":"Белорусская ассоциация гольфа","source":"https://ingolf.by/turniryi/kalendarnyij-plan-na-2026","sourceName":"Белорусская ассоциация гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Календарная запись; итоговый протокол не найден."},
-  {"id":"belarus-2026-9","name":"Belarus Minigolf Open Cup","sport":"Мини-гольф","dates":"26–27 сентября 2026","start":"2026-09-26","end":"2026-09-26","location":"д. Высокое, Смолевичский район, Беларусь","region":"д. Высокое, Смолевичский район, Беларусь","country":"Беларусь","level":"Республиканский / международный","code":"","organizer":"Белорусская ассоциация гольфа","source":"https://ingolf.by/turniryi/kalendarnyij-plan-na-2026","sourceName":"Белорусская ассоциация гольфа","origin":"parsed","extractedAt":"2026-11-23","note":"Календарная запись; итоговый протокол не найден."}
 ]
 ,
   "clubs": [
@@ -557,9 +547,9 @@ const golf={
   {"url":"https://zgr.kz/","code":"200","final":"https://zgr.kz/ru","title":"Гольф-курорт «Жайляу»","desc":"Гольф-курорт «Жайляу» предлагает чемпионские поля с восемнадцатью лунками и захватывающими видами на горы. В распоряжении гостей драйвинг-рейндж, три паттинг-грина, про-шоп и Федерация гольфа Казахстана. Курорт также включает фитнес-клуб, спортивный бар, ресторан Country Club, итальянский ресторан «Салон Вкуса», конференц-залы и отель, обеспечивая "}
 ]
 
-}
+};
 
-export default GOLF;const archive={
+const archive={
   "schemaVersion": 1,
   "description": "Начальный проверенный набор исторических студенческих турниров. Включены только сведения, подтверждаемые указанными первичными источниками; отсутствие результата не означает, что его не существует.",
   "importedAt": "2026-11-23",
@@ -1989,14 +1979,275 @@ export default GOLF;const archive={
     "added": 3,
     "description": "Добавлены полные опубликованные таблицы 60 игроков XXXIV Чемпионата России 2025 (день 4), а также итоговые командные таблицы Лиги Гольфа 2025 и 2024."
   }
-};const EVENTS=(golf.tournaments||[]).map((e,i)=>({...e,id:e.id||i,sport:e.sport||'Гольф',dates:e.dates||[e.start,e.end].filter(Boolean).join(' — ')||'Дата не указана',location:e.location||e.venue||e.region||'Место уточняется',level:e.level||e.code||'Не указан',status:e.status||'В календаре'}));const CLUBS=golf.clubs||[], SOURCES=(golf.sources||[]);let tab='Турниры',q='',filter='Все',selected=null;
-function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
-function render(){let m=document.getElementById('main'),n=document.getElementById('nav');n.innerHTML=['Турниры','Архив','Клубы','Аналитика','Источники'].map((t,i)=>'<button class="'+(tab===t?'active':'')+'" onclick="tab=\''+t+'\';selected=null;render()"><span>'+['▦','▤','⌂','⌁','◎'][i]+'</span>'+t+'</button>').join('');
-if(selected){m.innerHTML='<button onclick="selected=null;render()">← Все турниры</button><div class="hero"><span class="tag darktag">'+esc(selected.sport)+' · '+esc(selected.level)+'</span><h2>'+esc(selected.name)+'</h2><p>'+esc(selected.dates)+'<br>'+esc(selected.location)+'</p></div><div class="card"><b>Статус и организатор</b><p>'+esc(selected.status)+'<br>'+esc(selected.organizer||'Организатор уточняется')+'</p><b>Заметка</b><p>'+esc(selected.note||'Сведения собраны из указанного источника.')+'</p><a target="_blank" href="'+esc(selected.source||'#')+'">Открыть первоисточник ↗</a></div>';return}
-if(tab==='Турниры'){let list=EVENTS.filter(e=>(e.name+' '+e.location+' '+e.sport+' '+e.level).toLowerCase().includes(q.toLowerCase())&&(filter==='Все'||e.sport===filter));m.innerHTML='<div class="hero"><small>ОБЗОР КАЛЕНДАРЯ</small><h2>Следи за игрой.<br>Не пропускай старт.</h2><p>Календарь и справочники проекта.</p><div class="stats"><div class="stat"><b>'+EVENTS.filter(e=>['Предстоит','В календаре'].includes(e.status)).length+'</b>Предстоящих</div><div class="stat"><b>'+SOURCES.length+'</b>Источника</div></div></div><input placeholder="Поиск турнира, города, уровня…" oninput="q=this.value;render()" value="'+esc(q)+'"><div>'+['Все','Гольф','Мини-гольф'].map(f=>'<button class="'+(filter===f?'active':'')+'" onclick="filter=\''+f+'\';render()">'+f+'</button>').join('')+'</div><h3>Календарь · '+list.length+'</h3>'+list.map(e=>'<div class="card" onclick="selected=EVENTS.find(x=>x.id===\''+String(e.id).replace(/'/g,"\\'")+'\');render()"><span class="tag">'+esc(e.sport)+'</span><span class="muted" style="float:right">'+esc(e.level)+'</span><h3>'+esc(e.name)+'</h3><b>'+esc(e.dates)+'</b><p>'+esc(e.location)+'</p><span class="tag darktag">'+esc(e.status)+'</span><p style="text-align:right;color:#174D38">Подробнее ↗</p></div>').join('')+'<p class="muted">Даты и статусы перепроверяйте у организаторов.</p>'}
-else if(tab==='Архив'){m.innerHTML='<h2>Архив результатов</h2><p>Сохранены опубликованные места и счёт. Частичные и предварительные результаты отмечены отдельно.</p>'+archive.tournaments.map(t=>'<div class="card"><span class="muted">'+esc(t.year)+' · '+esc(t.resultCoverage||'результаты')+'</span><h3>'+esc(t.name)+'</h3><p>'+esc(t.venue||'')+' · '+esc(t.country||'')+'<br>'+esc(t.status)+' · '+t.results.length+' строк</p>'+t.results.map(r=>'<div class="result"><b>'+esc((r.place?r.place+'. ':'')+(r.player||r.name||'Результат'))+'</b><div class="muted">'+esc([r.category,r.score,r.note].filter(Boolean).join(' · '))+'</div>'+(r.members?'<div class="muted">Состав: '+esc(r.members)+'</div>':'')+'</div>').join('')+'<p><a target="_blank" href="'+esc(t.source||'#')+'">Открыть источник ↗</a></p></div>').join('')}
-else if(tab==='Клубы'){m.innerHTML='<h2>Гольф-клубы и площадки</h2><input placeholder="Поиск клуба, страны…" oninput="q=this.value;render()" value="'+esc(q)+'">'+CLUBS.filter(c=>(c.name+' '+c.country+' '+c.region).toLowerCase().includes(q.toLowerCase())).map(c=>'<div class="card"><span class="muted">'+esc(c.country)+' · '+esc(c.region)+'</span><h3>'+esc(c.name)+'</h3><p>'+esc(c.type||'Гольф-площадка')+' · '+esc(c.channelStatus||'')+'</p><p>'+esc(c.note||'')+'</p>'+(c.site&&c.site!=='—'?'<a target="_blank" href="'+esc(c.site)+'">Открыть сайт ↗</a>':'')+'</div>').join('')}
-else if(tab==='Аналитика'){m.innerHTML='<h2>Аналитика</h2><p>Каркас будущей аналитики. Автоматические выводы появятся после подключения базы и ежедневных сборщиков.</p>'+[['Календарь','Сравнение количества турниров по месяцам, странам и уровням.'],['Результаты','История победителей, мест и счёта по официальным протоколам.'],['Изменения','Новые даты, переносы, изменения правил и сроков регистрации.'],['ИИ-обзоры','Короткие статьи с кликабельными источниками.']].map(x=>'<div class="card"><b>'+x[0]+'</b><p>'+x[1]+'</p></div>').join('')}
-else{m.innerHTML='<h2>Источники</h2><p>Реестр ссылок проекта; автоматический ежедневный сбор ещё не запущен.</p>'+SOURCES.map((s,i)=>'<div class="card"><span class="muted">ИСТОЧНИК '+(i+1)+'</span><h3>'+esc(s.name)+'</h3><p>'+esc(s.country)+' · '+esc(s.roles||s.type||'')+'</p><p>'+esc(s.status||'')+'</p><a target="_blank" href="'+esc(s.url||'#')+'">Открыть ↗</a></div>').join('')}}
+};
+
+/* ───── Приложение ───── */
+const RU = new Intl.Collator('ru');
+const MONTH_DAY = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+
+// Статус всегда считается из дат, поэтому не устаревает.
+function statusOf(e, today = MONTH_DAY(new Date())) {
+  if (!e.start) return 'Дата уточняется';
+  if ((e.end || e.start) < today) return 'Завершён';
+  if (e.start > today) return 'Предстоит';
+  return 'Идёт сейчас';
+}
+
+const EVENTS = (golf.tournaments || []).map((e, i) => ({
+  ...e,
+  id: String(e.id || 'tournament-' + i),
+  name: e.name || 'Турнир без названия',
+  sport: e.sport || 'Гольф',
+  dates: e.dates || [e.start, e.end].filter(Boolean).join(' — ') || 'Дата не указана',
+  location: e.location || e.venue || e.region || 'Место уточняется',
+  level: e.level || e.code || 'Не указан'
+}));
+const CLUBS = golf.clubs || [];
+const SOURCES = golf.sources || [];
+const ARCHIVE = [...(archive.tournaments || [])].sort((a, b) =>
+  (b.year - a.year) || String(b.startDate || '').localeCompare(String(a.startDate || '')));
+
+const COVERAGE = {
+  'partial': 'неполные результаты',
+  'podium': 'только призёры',
+  'winners': 'только победители',
+  'team-podium': 'командные призёры',
+  'team-results': 'командные результаты',
+  'team-standings': 'командный зачёт',
+  'round4-leaderboard': 'таблица после 4-го раунда',
+  'provisional': 'предварительные результаты',
+  'not_imported': 'результаты не внесены'
+};
+
+const TABS = [['Турниры', '▦'], ['Архив', '▤'], ['Клубы', '⌂'], ['Аналитика', '⌁'], ['Источники', '◎']];
+const PERIODS = ['Все', 'Предстоящие', 'Прошедшие'];
+
+const state = { q: '', clubQ: '', sport: 'Все', period: 'Все', listScroll: 0 };
+
+const $ = id => document.getElementById(id);
+
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+// Поиск без учёта регистра и буквы «ё».
+function norm(s) { return String(s ?? '').toLowerCase().replace(/ё/g, 'е').trim(); }
+function matches(query, fields) {
+  const text = norm(fields.filter(Boolean).join(' '));
+  return norm(query).split(/\s+/).every(word => text.includes(word));
+}
+
+function plural(n, one, few, many) {
+  const d = n % 10, h = n % 100;
+  if (d === 1 && h !== 11) return one;
+  if (d >= 2 && d <= 4 && (h < 12 || h > 14)) return few;
+  return many;
+}
+
+// Ссылка выводится только для настоящих http(s)-адресов.
+function link(url, text) {
+  if (!/^https?:\/\//i.test(url || '')) return '';
+  return '<p><a target="_blank" rel="noopener noreferrer" href="' + esc(url) + '">' + esc(text) + ' ↗</a></p>';
+}
+
+function empty(text) { return '<div class="card muted">' + esc(text) + '</div>'; }
+
+/* Адрес: #Архив — вкладка, #event/<id> — карточка турнира.
+   Благодаря этому работает кнопка «Назад» в браузере и на телефоне. */
+function route() {
+  let hash = location.hash.slice(1);
+  try { hash = decodeURIComponent(hash); } catch (e) { /* оставляем как есть */ }
+  if (hash.startsWith('event/')) {
+    const event = EVENTS.find(e => e.id === hash.slice(6));
+    if (event) return { tab: 'Турниры', event };
+  }
+  return { tab: TABS.some(t => t[0] === hash) ? hash : 'Турниры', event: null };
+}
+
+/* ───── Турниры ───── */
+function filteredEvents() {
+  const rows = EVENTS.filter(e => {
+    const done = statusOf(e) === 'Завершён';
+    if (state.sport !== 'Все' && e.sport !== state.sport) return false;
+    if (state.period === 'Предстоящие' && done) return false;
+    if (state.period === 'Прошедшие' && !done) return false;
+    return matches(state.q, [e.name, e.location, e.region, e.country, e.organizer, e.sport, e.level, e.dates]);
+  });
+  // Сначала идущие и ближайшие, затем прошедшие — от свежих к старым.
+  return rows.sort((a, b) => {
+    const da = statusOf(a) === 'Завершён', db = statusOf(b) === 'Завершён';
+    if (da !== db) return da ? 1 : -1;
+    const byDate = String(a.start).localeCompare(String(b.start));
+    return (da ? -byDate : byDate) || RU.compare(a.name, b.name);
+  });
+}
+
+function eventList() {
+  const rows = filteredEvents();
+  return '<h3>Календарь · ' + rows.length + ' ' + plural(rows.length, 'турнир', 'турнира', 'турниров') + '</h3>' +
+    (rows.map(e =>
+      '<div class="card clickable" role="button" tabindex="0" data-event="' + esc(e.id) + '">' +
+      '<span class="tag">' + esc(e.sport) + '</span><span class="muted level">' + esc(e.level) + '</span>' +
+      '<h3>' + esc(e.name) + '</h3><b>' + esc(e.dates) + '</b><p>' + esc(e.location) + '</p>' +
+      '<span class="tag darktag">' + statusOf(e) + '</span><p class="more">Подробнее →</p></div>'
+    ).join('') || empty('Ничего не найдено. Измените запрос или фильтры.'));
+}
+
+function chips(group, values) {
+  return '<div>' + values.map(v =>
+    '<button data-' + group + '="' + v + '" aria-pressed="' + (state[group] === v) + '"' +
+    (state[group] === v ? ' class="active"' : '') + '>' + v + '</button>').join('') + '</div>';
+}
+
+function viewTournaments() {
+  const upcoming = EVENTS.filter(e => statusOf(e) === 'Предстоит').length;
+  const live = EVENTS.filter(e => statusOf(e) === 'Идёт сейчас').length;
+  const stat = (n, label) => '<div class="stat"><b>' + n + '</b>' + label + '</div>';
+  return '<div class="hero"><small>ОБЗОР КАЛЕНДАРЯ</small><h2>Следи за игрой.<br>Не пропускай старт.</h2>' +
+    '<p>Календарь и справочники проекта.</p><div class="stats">' +
+    stat(upcoming, plural(upcoming, 'предстоящий', 'предстоящих', 'предстоящих')) +
+    (live ? stat(live, 'идёт сейчас') : '') +
+    stat(SOURCES.length, plural(SOURCES.length, 'источник', 'источника', 'источников')) +
+    '</div></div>' +
+    '<input id="search" type="search" data-key="q" aria-label="Поиск турнира" placeholder="Поиск турнира, города, уровня…" value="' + esc(state.q) + '">' +
+    chips('sport', ['Все', 'Гольф', 'Мини-гольф']) +
+    chips('period', PERIODS) +
+    '<div id="list">' + eventList() + '</div>' +
+    '<p class="muted">Даты и статусы перепроверяйте у организаторов.</p>';
+}
+
+function viewEvent(e) {
+  return '<button data-back>← Все турниры</button>' +
+    '<div class="hero"><span class="tag">' + esc(e.sport) + ' · ' + esc(e.level) + '</span>' +
+    '<h2>' + esc(e.name) + '</h2><p>' + esc(e.dates) + '<br>' + esc(e.location) + '</p></div>' +
+    '<div class="card"><b>Статус и организатор</b><p>' + statusOf(e) + '<br>' + esc(e.organizer || 'Организатор уточняется') + '</p>' +
+    '<b>Заметка</b><p>' + esc(e.note || 'Сведения собраны из указанного источника.') + '</p>' +
+    (e.sourceName ? '<p class="muted">' + esc(e.sourceName) + '</p>' : '') +
+    link(e.source, 'Открыть первоисточник') + '</div>';
+}
+
+/* ───── Архив ───── */
+function viewArchive() {
+  return '<h2>Архив результатов</h2><p>Сохранены опубликованные места и счёт. Нажмите на «Результаты», чтобы раскрыть таблицу.</p>' +
+    ARCHIVE.map(t => {
+      const rows = t.results || [];
+      let category = null;
+      const table = rows.map(r => {
+        // Название зачёта выводится один раз над своей группой строк.
+        const head = r.category !== category ? '<h4>' + esc(r.category || 'Результаты') + '</h4>' : '';
+        category = r.category;
+        return head + '<div class="result"><b>' + esc((r.place ? r.place + '. ' : '') + (r.player || r.name || 'Результат')) + '</b>' +
+          '<div class="muted">' + esc([r.score, r.note].filter(Boolean).join(' · ')) + '</div>' +
+          (r.members ? '<div class="muted">Состав: ' + esc(r.members) + '</div>' : '') + '</div>';
+      }).join('');
+      return '<div class="card"><span class="muted">' + esc(t.year) + ' · ' + esc(COVERAGE[t.resultCoverage] || 'результаты') + '</span>' +
+        '<h3>' + esc(t.name) + '</h3><p>' + esc([t.venue, t.country].filter(Boolean).join(' · ')) + '<br>' + esc(t.status) + '</p>' +
+        (rows.length
+          ? '<details><summary>Результаты · ' + rows.length + ' ' + plural(rows.length, 'строка', 'строки', 'строк') + '</summary>' + table + '</details>'
+          : '<p class="muted">Результаты пока не внесены.</p>') +
+        (t.verification ? '<p class="muted">' + esc(t.verification) + '</p>' : '') +
+        link(t.source, 'Открыть источник') + '</div>';
+    }).join('');
+}
+
+/* ───── Клубы ───── */
+function clubList() {
+  const rows = CLUBS.filter(c => matches(state.clubQ, [c.name, c.country, c.region, c.type]));
+  return '<p class="muted">Найдено: ' + rows.length + '</p>' +
+    (rows.map(c =>
+      '<div class="card"><span class="muted">' + esc([c.country, c.region].filter(Boolean).join(' · ')) + '</span>' +
+      '<h3>' + esc(c.name) + '</h3><p>' + esc([c.type || 'Гольф-площадка', c.channelStatus].filter(Boolean).join(' · ')) + '</p>' +
+      '<p>' + esc(c.note) + '</p>' + link(c.site, 'Открыть сайт') + '</div>'
+    ).join('') || empty('Клубы не найдены.'));
+}
+
+function viewClubs() {
+  return '<h2>Гольф-клубы и площадки</h2>' +
+    '<input id="search" type="search" data-key="clubQ" aria-label="Поиск клуба" placeholder="Поиск клуба, страны, региона…" value="' + esc(state.clubQ) + '">' +
+    '<div id="list">' + clubList() + '</div>';
+}
+
+/* ───── Аналитика и источники ───── */
+function viewAnalytics() {
+  return '<h2>Аналитика</h2><p>Каркас будущей аналитики. Автоматические выводы появятся после подключения базы и ежедневных сборщиков.</p>' +
+    [['Календарь', 'Сравнение количества турниров по месяцам, странам и уровням.'],
+     ['Результаты', 'История победителей, мест и счёта по официальным протоколам.'],
+     ['Изменения', 'Новые даты, переносы, изменения правил и сроков регистрации.'],
+     ['ИИ-обзоры', 'Короткие статьи с кликабельными источниками.']]
+      .map(x => '<div class="card"><b>' + x[0] + '</b><p>' + x[1] + '</p></div>').join('');
+}
+
+function viewSources() {
+  return '<h2>Источники</h2><p>Реестр ссылок проекта; автоматический ежедневный сбор ещё не запущен.</p>' +
+    SOURCES.map((s, i) =>
+      '<div class="card"><span class="muted">ИСТОЧНИК ' + (i + 1) + '</span><h3>' + esc(s.name) + '</h3>' +
+      '<p>' + esc([s.country, s.roles || s.type].filter(Boolean).join(' · ')) + '</p><p>' + esc(s.status) + '</p>' +
+      link(s.url, 'Открыть') + '</div>').join('');
+}
+
+const VIEWS = { 'Турниры': viewTournaments, 'Архив': viewArchive, 'Клубы': viewClubs, 'Аналитика': viewAnalytics, 'Источники': viewSources };
+
+function render() {
+  const { tab, event } = route();
+  $('nav').innerHTML = TABS.map(([name, icon]) =>
+    '<button data-tab="' + name + '"' + (tab === name ? ' class="active" aria-current="page"' : '') +
+    '><span>' + icon + '</span>' + name + '</button>').join('');
+  $('main').innerHTML = event ? viewEvent(event) : VIEWS[tab]();
+}
+
+/* ───── События ───── */
+let openedFromList = false;
+
+function openEvent(id) {
+  state.listScroll = window.scrollY;
+  openedFromList = true;
+  location.hash = 'event/' + encodeURIComponent(id);
+}
+
+document.addEventListener('click', ev => {
+  const el = ev.target.closest('[data-tab],[data-event],[data-back],[data-sport],[data-period]');
+  if (!el) return;
+  const d = el.dataset;
+  if (d.tab) {
+    openedFromList = false;
+    if (location.hash.slice(1) && route().tab === d.tab && !route().event) window.scrollTo(0, 0);
+    else location.hash = d.tab;
+    render();
+  } else if (d.event) {
+    openEvent(d.event);
+  } else if ('back' in d) {
+    if (openedFromList) history.back(); else location.hash = 'Турниры';
+  } else {
+    const group = d.sport ? 'sport' : 'period';
+    state[group] = d[group];
+    render();
+  }
+});
+
+document.addEventListener('keydown', ev => {
+  if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.dataset && ev.target.dataset.event) {
+    ev.preventDefault();
+    openEvent(ev.target.dataset.event);
+  }
+});
+
+// Перерисовывается только список: поле поиска не теряет фокус при наборе.
+document.addEventListener('input', ev => {
+  const key = ev.target.dataset.key;
+  if (!key) return;
+  state[key] = ev.target.value;
+  $('list').innerHTML = key === 'q' ? eventList() : clubList();
+});
+
+let wasEvent = false;
+window.addEventListener('hashchange', () => {
+  const now = route();
+  render();
+  window.scrollTo(0, wasEvent && !now.event && now.tab === 'Турниры' ? state.listScroll : 0);
+  wasEvent = !!now.event;
+});
+
+wasEvent = !!route().event;
 render();
 </script></body></html>
