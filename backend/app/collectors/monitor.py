@@ -15,7 +15,7 @@ from urllib.parse import urljoin, urlparse
 from urllib.robotparser import RobotFileParser
 
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, UnicodeDammit
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -117,8 +117,15 @@ def fetch_html(session: requests.Session, url: str) -> tuple[requests.Response, 
                 response.close()
                 raise RuntimeError(f"Response exceeds {MAX_BYTES} byte limit")
             chunks.append(chunk)
+        body = b"".join(chunks)
+        if "charset=" not in content_type:
+            # Без charset в заголовке requests подставляет ISO-8859-1 и портит кириллицу:
+            # пробуем UTF-8, затем кодировку, объявленную в самой странице.
+            text = UnicodeDammit(body, ["utf-8"], is_html=True).unicode_markup
+            if text is not None:
+                return response, text
         encoding = response.encoding or "utf-8"
-        return response, b"".join(chunks).decode(encoding, errors="replace")
+        return response, body.decode(encoding, errors="replace")
     raise RuntimeError("Too many redirects")
 
 
@@ -132,14 +139,25 @@ def load_sources() -> list[dict]:
 def run_all() -> dict:
     sources = [s for s in load_sources() if s.get("enabled", True)]
     grouped: dict[str, list[dict]] = {}
+    invalid: list[tuple[dict, str]] = []
     for source in sources:
-        url = normalized_url(source["url"])
+        try:
+            url = normalized_url(source["url"])
+        except (KeyError, ValueError) as exc:
+            # Ошибка в одной записи реестра не должна останавливать весь запуск.
+            invalid.append((source, f"Некорректный URL источника: {exc}"))
+            continue
         grouped.setdefault(url, []).append(source)
 
     results = []
     con = connect()
     session = make_session()
     try:
+        for source, error in invalid:
+            con.execute("""INSERT INTO source_checks
+              (source_id,checked_at,changed,error) VALUES (?,?,0,?)""",
+              (source["id"], datetime.now(timezone.utc).isoformat(), error))
+            results.append({"source_id": source["id"], "status": "error", "error": error})
         for index, (url, aliases) in enumerate(grouped.items()):
             if index:
                 time.sleep(max(0, REQUEST_DELAY))
