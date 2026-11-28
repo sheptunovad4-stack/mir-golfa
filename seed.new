@@ -1,0 +1,60 @@
+PRAGMA foreign_keys = ON;
+
+-- 1. COUNTRIES
+INSERT OR IGNORE INTO countries (id, name_country, country_code) VALUES
+(1, 'Россия', 'RU'),
+(2, 'Турция', 'TR'),
+(3, 'ОАЭ', 'AE');
+
+-- 2. VENUES
+INSERT OR IGNORE INTO venues (id, name, country_id, city, address, website) VALUES
+(1, 'Гольф-клуб Пестово', 1, 'Москва', 'Московская область', NULL),
+(2, 'Antalya Golf Club', 2, 'Анталья', 'Belek, Antalya', NULL),
+(3, 'Emirates Golf Club', 3, 'Дубай', 'Dubai, UAE', NULL);
+
+-- 3. PLAYERS
+INSERT OR IGNORE INTO players (id, first_name, last_name, middle_name, birth_date) VALUES
+(1, 'Александр', 'Тимошин', NULL, '1990-05-14'),
+(2, 'Игорь', 'Петруня', NULL, '1985-09-22'),
+(3, 'Иван', 'Ермаков', NULL, '1998-02-11');
+
+-- 4. TOURNAMENTS
+INSERT OR IGNORE INTO tournaments
+(id, title, start_date, end_date, status_1, status_2, venue_id) VALUES
+(1, 'Moscow Golf Open', '2026-06-10', '2026-06-12', 'regional', 'canceled', 1),
+(2, 'Antalya Golf Cup', '2026-07-15', '2026-07-17', 'regional', 'planned', 2),
+(3, 'Dubai Golf Championship', '2026-08-20', '2026-08-22', 'club', 'ongoing', 3);
+
+-- 5. NEWS
+INSERT OR IGNORE INTO news
+(id, title, summary, published_at, tournament_id, source_url) VALUES
+(1, 'Новости Moscow Golf Open', 'Информация о турнире в Москве.', '2026-06-05 12:00:00', 1, NULL),
+(2, 'Подготовка к Antalya Golf Cup', 'Подготовка к соревнованиям в Анталье.', '2026-07-01 10:00:00', 2, NULL),
+(3, 'Dubai Golf Championship', 'Информация о предстоящем турнире в Дубае.', '2026-07-10 15:00:00', 3, NULL);
+
+-- 6. PARTICIPATIONS
+INSERT OR IGNORE INTO participations
+(id, tournament_id, player_id, category, handicap) VALUES
+(1, 1, 1, 'Мужчины', 0.8),
+(2, 1, 2, 'Мужчины', 10.7),
+(3, 2, 3, 'Мужчины', 14.0);
+
+-- 7. ROUNDS
+INSERT OR IGNORE INTO rounds
+(id, participation_id, round_number, total_score, score_to_par) VALUES
+(1, 1, 1, 72, 0),
+(2, 2, 1, 80, 8),
+(3, 3, 1, 85, 13);
+
+-- 8. RESULTS_BY_HOLE
+INSERT OR IGNORE INTO results_by_hole
+(id, par, hole_number, shots, round_id) VALUES
+(1, 4, 1, 4, 1),
+(2, 4, 2, 3, 1),
+(3, 5, 3, 5, 1),
+(4, 4, 1, 5, 2),
+(5, 4, 2, 4, 2),
+(6, 5, 3, 6, 2),
+(7, 4, 1, 5, 3),
+(8, 4, 2, 5, 3),
+(9, 5, 3, 6, 3);
