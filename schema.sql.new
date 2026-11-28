@@ -1,0 +1,98 @@
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE IF NOT EXISTS countries (
+    id INTEGER PRIMARY KEY,
+    name_country TEXT NOT NULL,
+    country_code TEXT UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS venues (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    country_id INTEGER REFERENCES countries(id),
+    city TEXT,
+    address TEXT,
+    website TEXT,
+    UNIQUE (name, country_id)
+);
+
+CREATE TABLE IF NOT EXISTS players (
+    id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    middle_name TEXT,
+    birth_date DATE
+);
+
+CREATE TABLE IF NOT EXISTS tournaments (
+    id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
+    start_date DATE,
+    end_date DATE,
+    status_1 TEXT NOT NULL DEFAULT 'club'
+        CHECK (status_1 IN ('club', 'regional', '')),
+    status_2 TEXT NOT NULL DEFAULT 'planned'
+        CHECK (status_2 IN ('planned', 'ongoing', 'canceled')),
+    venue_id INTEGER REFERENCES venues(id),
+    CHECK (end_date IS NULL OR start_date IS NULL OR end_date >= start_date)
+);
+
+CREATE TABLE IF NOT EXISTS news (
+    id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
+    summary TEXT NOT NULL,
+    published_at TIMESTAMP,
+    tournament_id INTEGER REFERENCES tournaments(id),
+    source_url TEXT
+);
+
+CREATE TABLE IF NOT EXISTS participations (
+    id INTEGER PRIMARY KEY,
+    tournament_id INTEGER NOT NULL REFERENCES tournaments(id),
+    player_id INTEGER NOT NULL REFERENCES players(id),
+    category TEXT,
+    handicap NUMERIC(4,1),
+    UNIQUE (tournament_id, player_id)
+);
+
+CREATE TABLE IF NOT EXISTS rounds (
+    id INTEGER PRIMARY KEY,
+    participation_id INTEGER NOT NULL REFERENCES participations(id),
+    round_number INTEGER NOT NULL CHECK (round_number BETWEEN 1 AND 10),
+    total_score INTEGER,
+    score_to_par INTEGER,
+    UNIQUE (participation_id, round_number)
+);
+
+CREATE TABLE IF NOT EXISTS results_by_hole (
+    id INTEGER PRIMARY KEY,
+    par INTEGER NOT NULL CHECK (par BETWEEN 3 AND 6),
+    hole_number INTEGER NOT NULL CHECK (hole_number BETWEEN 1 AND 18),
+    shots INTEGER NOT NULL CHECK (shots > 0),
+    round_id INTEGER NOT NULL REFERENCES rounds(id),
+    UNIQUE (round_id, hole_number)
+);
+
+CREATE INDEX IF NOT EXISTS idx_tournaments_dates
+ON tournaments(start_date, end_date);
+
+CREATE INDEX IF NOT EXISTS idx_tournaments_status
+ON tournaments(status_2);
+
+CREATE INDEX IF NOT EXISTS idx_tournaments_venue
+ON tournaments(venue_id);
+
+CREATE INDEX IF NOT EXISTS idx_participations_player
+ON participations(player_id);
+
+CREATE INDEX IF NOT EXISTS idx_participations_tournament
+ON participations(tournament_id);
+
+CREATE INDEX IF NOT EXISTS idx_rounds_participation
+ON rounds(participation_id);
+
+CREATE INDEX IF NOT EXISTS idx_results_round
+ON results_by_hole(round_id);
+
+CREATE INDEX IF NOT EXISTS idx_news_published
+ON news(published_at);
